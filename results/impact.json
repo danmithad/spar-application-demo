@@ -1,0 +1,29 @@
+{
+ "final_scores": {
+  "anthropic:claude-haiku-4-5": 0.8125211077338736,
+  "anthropic:claude-sonnet-5": 0.9142109429978889,
+  "openai:gpt-5-nano": 0.8757541478129713,
+  "openai:gpt-5-mini": 0.9013432959390653,
+  "openai:gpt-5": 0.9351293103448276,
+  "anthropic:claude-opus-5": 0.9329377519032691
+ },
+ "ranking": [
+  "openai:gpt-5",
+  "anthropic:claude-opus-5",
+  "anthropic:claude-sonnet-5",
+  "openai:gpt-5-mini",
+  "openai:gpt-5-nano",
+  "anthropic:claude-haiku-4-5"
+ ],
+ "top_gap": 0.0021915584415584943,
+ "top_ci": {
+  "lo": -0.08791208791208793,
+  "hi": 0.09520045922837539,
+  "p_leq_0": 0.4517,
+  "n_clusters": 44
+ },
+ "passages_needed": 349060.01202262705,
+ "opus_sd_before": 0.01814156969991139,
+ "opus_sd_after": 0.012927927800214184,
+ "cluster_key": "company"
+}

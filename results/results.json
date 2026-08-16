@@ -1,0 +1,1542 @@
+{
+ "labels": [
+  "adoption",
+  "risk",
+  "vendor",
+  "harm"
+ ],
+ "beta": 1.0,
+ "samples": 30,
+ "vote_threshold": 0.5,
+ "cluster_key": "company",
+ "passages": [
+  {
+   "id": "p01",
+   "text": "the platform demonstrates meaningful channel shift towards digital self\u2011service. The proportion of new business-processing\n\nthrough auto-underwriting was 70 per cent in December 2025.\n\nWe are also leveraging artificial intelligence across several customer touchpoints. AI\u2011enabled claims adjudication is improving\n\nspeed, accuracy and efficiency in claims processing, enhancing overall satisfaction while supporting operational scalability.\n\n26",
+   "gold": [
+    "adoption"
+   ]
+  },
+  {
+   "id": "p02",
+   "text": "2025 contribution:\n0bps\n(reflecting phasing, with larger benefits in later years)\n\n## 4\n\n### Digital and generative AI\n\nThese capabilities are now being deployed across core business processes and are already embedded into ways of working in marketing. The same approach is being applied in R&amp;D, while early pilots in forecasting and supply chain diagnostics are demonstrating potential for greater accuracy. The focus is on reducing cost and on building speed, precision and higher-value execution across the Business. SAP modernisation is also progressing, enabling more standardised global processes.\n\n![img-38.jpeg](img-38.jpeg)",
+   "gold": [
+    "adoption"
+   ]
+  },
+  {
+   "id": "p03",
+   "text": "#### **Emerging risks**\n\nAgility and speed of adaptation In a rapidly changing world our ability to recognise each new challenge and opportunity as they develop and work with our suppliers to deliver customer solutions is critical to delivering our strategy.\n\n#### AI and disruptive technology\n\nAdvances in technology help us to continually improve our customer service, and we anticipate that the use of AI in industry will produce a step change in technological solutions. The uncontrolled use of AI also brings a significant change in online threats and methods used to bypass cybersecurity.\n\n#### Inventory management\n\nIn establishing our UK NDC we have packed and shipped products from our existing UK sites into one warehouse, requiring additional controls and management activities to ensure that the stock integrity is protected. There is opportunity to consolidate stock of the same items that were previously held at each location and improve inventory management.",
+   "gold": [
+    "risk"
+   ]
+  },
+  {
+   "id": "p04",
+   "text": "The following# STRATEGIC PRIORITIES AND BUSINESS MODEL\n\nOur six strategic priorities are key elements of our business model, which drive the creation of stakeholder value. Our progress since they were established is noted below and they continue to receive specific attention and focus.\n\n## 1. ENHANCE SENIOR\u2019S AUTONOMOUS AND COLLABORATIVE BUSINESS MODEL\n\nSenior\u2019s business model is one of empowering and holding accountable our businesses, operating within a clearly defined control framework to develop and deliver business plans in line with overall Group strategy. Increasing collaboration amongst businesses in the Group is a priority to ensure economies of scale are realised whilst maintaining the autonomous business structure. Business leaders throughout Senior are actively embracing collaboration activities with priorities set at Group level in consultation with the businesses.\n\n### What we did in 2021:\n\n*   Implemented engagement guidelines to help optimise the transfer of work to cost competitive locations and to facilitate higher level solutions to meet customer needs;",
+   "gold": []
+  },
+  {
+   "id": "p05",
+   "text": "\u00b7\u00a0\u00a0\u00a0\u00a0\u00a0 Planning and environmental policy changes affecting development feasibility, cost and timelines;\n\n\u00b7\u00a0\u00a0\u00a0\u00a0\u00a0 Changes to residential rent controls; and\n\n\u00b7\u00a0\u00a0\u00a0\u00a0\u00a0 Technology disruption (particularly the impact of AI) and associated cyber, fraud and business-model impacts across customer and operations.\n\nEmerging risks with a longer-term horizon include:\n\n\u00b7\u00a0\u00a0\u00a0\u00a0\u00a0 Shifts in social dynamics and demographics, including changes in how space is used, patterns of urbanisation, consumer spending and travel patterns;",
+   "gold": [
+    "risk"
+   ]
+  },
+  {
+   "id": "p06",
+   "text": "Strategy\n\nOur vision remains unchanged, which is to grow our share of our existing markets, develop new capabilities and enter new geographies within the fast growing and attractive industries in which we operate.\n\nIn particular, we intend to focus on growing our presence in Japan, the ASEAN region and the UK; broaden our offering to include virtual banking and expand our card solutions; and explore new product innovations that leverage Web 3.0 and artificial intelligence. A key element in achieving this will be establishing strategic partnerships with global companies in the fintech ecosystem, which we significantly progressed during the year.\n\nPost year-end\n\nRCTech successfully received conditional approval from the Trade and Industry Department of the Hong Kong SAR Government for a grant of HK$0.9 million. This grant will facilitate the Group's projects in Malaysia as we continue to expand our operations within the region.",
+   "gold": []
+  },
+  {
+   "id": "p07",
+   "text": "approach to model risk management, which poses execution\n\nchallenges. The adoption of more sophisticated modelling approaches\n\nincluding AI and technology related developments by both HSBC and\n\nthe financial services industry could also lead to increased model risk.\n\nHSBC\u2019s commitment to changes to business activities due to climate",
+   "gold": [
+    "risk"
+   ]
+  },
+  {
+   "id": "p08",
+   "text": "New Investments\n\nThe Company invested \u00a316.3 million in the year. Six new investments were made in the year, totalling \u00a38.1 million.\u00a0 In our continued support of the portfolio, nine companies received follow-on funding in the year, totalling \u00a38.2 million in aggregate. The new investments are:\n\n|     |     |\n| --- | --- |\n| Investment | Sector |\n| AutomatePro | SaaS platform providing test-automation tools for ServiceNow |\n| Biorelate | Medical data curation |\n| Plandek | DevOps analytics platform |\n| Quality Clouds | Quality control technology for low code software solutions |\n| Relative Insight | AI-based text data analytics platform |\n| Summize | Contract lifecycle management software provider |\n\n## Financial Results\n\nDuring the year, the Board paid ordinary dividends of 3.0 pence per ordinary share in respect of the year ended 31 December 2022, bringing the cumulative dividends paid as at 31 December 2022 to 81.0 pence per ordinary share.",
+   "gold": []
+  },
+  {
+   "id": "p09",
+   "text": "# **Simplify**\n\n#### **Simplify IT transformation**\n\nSopra Steria and Micro Focus collaborate regularly on a range of IT initiatives aimed at championing digital transformation, both within Sopra Steria and on behalf of its clients. Aligning with corporate green initiatives to move to cloud deployment, Sopra Steria achieved cost reductions and built-in scalability by migrating from Micro Focus Service Manager to Micro Focus SMAX, gaining AI and machine learning capabilities, and delivering agile and cost-effective service management to clients. The team achieved improved service delivery with additional modules, and increased service agent productivity.\n\n**\"The team immediately identified the value of the extra SMAX functionality, such as social interaction, machine learning analytics, and AI-driven ticket routing management and classification. We could leverage our existing investment with Micro Focus, and a proof-of-concept demonstrated that migrating from Service Manager to SMAX was easier than migrating to ServiceNow.\"**\n\n**Patrick Bailly** Domain Owner ITSM & Tools Sopra Steria\n\n**Strengthen**",
+   "gold": [
+    "adoption",
+    "vendor"
+   ]
+  },
+  {
+   "id": "p10",
+   "text": "\u2022 Number of serious IT incidents and time taken to respond\n\u2022 Major Incident Review actions\n\u2022 Actions arising from IT security self-assessments and monitoring of cyber exposure score and security risk rating\n\u2022 External testing and benchmarking of our IT security environment\n\n# Emerging risks\n\n\u2022 Increasingly sophisticated phishing and spoofing attempts\n\u2022 Increase in volume of cyber attacks driven by AI\n\n**Overall risk: High Trend: Increasing** Increasingly sophisticated phishing and spoofing attempts result in this risk being classified as high and increasing.\n\n**Principal risk: Operational Failure to ensure business continuity in case of a material incident**",
+   "gold": [
+    "risk"
+   ]
+  },
+  {
+   "id": "p11",
+   "text": "## New Investments\n\nTwo new investments were made in the year, totalling \u00a35.1 million. We continue to fund growth in existing portfolio businesses, and hence seven companies received follow-on funding in the year, totalling \u00a34.6 million in aggregate. The new investments are:\n\n| Investment       | Sector                                |\n|------------------|---------------------------------------|\n| Vuealta          | AI-based text data analytics platform |\n|                  | Business planning software and services |\n\n## Financial Results\n\nThe combination of strong performance and realisations enabled the Board to pay interim dividends of 9.0 pence per ordinary share in respect of the year ended 31 March 2022, bringing the cumulative dividends paid to 31 March 2022 to 166.4 pence per ordinary share. The movement in net asset value (\u201cNAV\u201d) per ordinary share and the dividends paid are set out in the table below:",
+   "gold": []
+  },
+  {
+   "id": "p12",
+   "text": "We have ring-fenced our own digital transformation projects, and allocated more resources to removing manually intensive processes, bypassing legacy IT and simplifying customer journeys. We invested in technology in response to the health crisis, to allow our people to work remotely.\n\nWe moved to the proactive assessment of immediate shifts in the supply and demand curve for the components of STEM skills, which helped us organise our work and response.\n\nWe remained agile to the changing demands for the digitisation of recruitment processes. We have been sourcing candidates via digital online boards and social media, adopting customised screening parameters to allow industry and job-specific background checks. We applied state-of-the-art AI solutions to make informed decisions in shortlisting candidates and to find the best quality candidates who are a good fit to organisation culture.\n\n#### **How we are responding to evolving trends**\n\nWithin SThree we believe that correct management and utilisation of data is core to driving efficiencies and supporting strategic decision-making.",
+   "gold": [
+    "adoption"
+   ]
+  },
+  {
+   "id": "p13",
+   "text": "**Risk appetite:** \u2610\n**Risk level:** \u2611\n\n### Preventive and mitigation measures\n\nCyber security threats are an inherent element of our digital operations, intensified by greater connectivity, the use of AI technologies and reliance on third-party systems. We focus on maintaining the availability, integrity and resilience of our networks through continuous strengthening of critical cyber controls and real-time monitoring of IT services.\n\nOur cyber security model aligns with recognised standards such as ISO 27000 and the NIST (National Institute of Standards and Technology) framework, supported by audits to identify vulnerabilities and a structured response and recovery model for cyber incidents, including strategic and technical activation layers. Business continuity plans and no-system procedures are triggered when required.\n\nWe also foster an internal cyber security culture through awareness programmes, ethical phishing exercises and targeted initiatives designed to enhance organisational resilience.",
+   "gold": [
+    "risk"
+   ]
+  },
+  {
+   "id": "p14",
+   "text": "FY22 was a year of accelerated growth for our Americas region.\n\nStrong demand drove regional net revenue growth of 55% year-on-year (49% organic) to \u00a3132.2 million, with 31 new clients added, nine with an annual run rate over $1 million. In line with our global delivery strategy, 68% of new hires in the Americas region were in the Latin America territory, bolstering nearshore delivery capability, including 77 Kin in our newest office in Bogota, Colombia.\n\nIndustry sector progress included continued scaling of agriculture, notable gains in financial services (including a record $90 million contract), and innovative work in retail and quick service restaurants. Acquisition of the remaining 50% of joint-venture Loop Integration boosted commerce capabilities, while the IP acquisition of Octain artificial intelligence (AI) accelerated our clients' paths to unlocking the value from their data.\n\nFollowing a comprehensive search and selection process, Adam Hasemeyer, formerly President of Kin + Carta's West Territory, has been appointed Group Chief Executive Officer, Americas.\n\nEurope",
+   "gold": [
+    "adoption"
+   ]
+  },
+  {
+   "id": "p15",
+   "text": "### Strategic Report\n\n### Business Review# Principal and Emerging Risks\n\nThe Committee has conducted horizon scanning and other than the exacerbation of geopolitical events in Ukraine & the Middle East, growing usage of Artificial Intelligence and continuing Climate Change, it does not believe that there are any new emerging risks. The risks together with how these are mitigated and managed, as far as practicable, are set out in the table below.\n\n## RISK & DESCRIPTION\nInvestment Performance and Strategy\nPerformance of the Company\u2019s investment portfolio is fundamental to the success of the company. An inappropriate investment strategy, or poor implementation of the strategy, for example relating to concentration of investments, asset allocation, the level of gearing or the degree of portfolio risk.\n\nDiscount/Premium Control\nShare price premium volatility and deep discount to net asset value per share leads to a sense of uncertainty reducing shareholder confidence. Potentially triggering shareholder intervention.",
+   "gold": [
+    "risk"
+   ]
+  },
+  {
+   "id": "p16",
+   "text": "## <span id=\"page-195-0\"></span>Glossary\n\n**Admission:** the admission of BTG's shares to the premium listing segment of the Official List and to trading on the London Stock Exchange's Main Market and on the Main Board of the Johannesburg Stock Exchange via secondary inward listing\n\n**AI:** artificial intelligence\n\n**Altron Limited:** a public company incorporated and registered in accordance with South African law, with registration number 1947/024583/06\n\n**Articles:** the articles of association of the company",
+   "gold": []
+  },
+  {
+   "id": "p17",
+   "text": "We continue to progress our 'Classroom to Clinic' ultrasound strategy based on:\n\n\u00b7\u00a0\u00a0\u00a0\u00a0\u00a0 Growing simulation revenues from our direct UK and US operations and global reseller channels, by expanding our range of ultrasound training simulators into new medical market sectors; and\n\n\u00b7\u00a0\u00a0\u00a0\u00a0\u00a0 Building on our partnership with GE Healthcare, that incorporates our ScanNav AI technology in their latest ultrasound systems, to grow clinical AI revenues through royalty-based licences with ultrasound machine manufacturers; and\n\n\u00b7\u00a0\u00a0\u00a0\u00a0\u00a0 Marketing, through our direct sales organisation, proprietary stand-alone AI systems that target the large pool of existing ultrasound machines.\n\nThree years on from our strategic 'Classroom to Clinic' expansion, we believe the successful progress of all parts of the business is reaffirming the wisdom of this decision and we look forward to continuing to build on this momentum.\n\nBoard and governance",
+   "gold": [
+    "adoption"
+   ]
+  },
+  {
+   "id": "p18",
+   "text": "we need to do, if we operate the business effectively, if we innovate, if we grow, everything else will take care of itself.\n\nFundamentally though, the diverse nature of Future creates strength and resilience in a more turbulent market as evidenced by our revenue of \u00a3788.9m and adjusted operating\n\nprofit of \u00a3256.4m and our strong cash conversion of 99%. At this time of traffic and AI uncertainty, advertisers are moving to high-intent audiences, which is what our brands provide.\n\nYou joined Future in April 2023, can you explain your strategy for the Group?\n\nWe are launching GAS - Growth Acceleration Strategy. This is the next phase of growth for the Group. What is clear to me is the impressive energy",
+   "gold": [
+    "risk"
+   ]
+  },
+  {
+   "id": "p19",
+   "text": "Forecast for the number of connected devices by 2032, increasing from 2.9 billion in 2022.\n\n# **The opportunity for Vodafone**\n\nVodafone is a global leader in managed IoT connectivity services, recognised for its extensive reach and innovative solutions. Vodafone has helped thousands of companies achieve their transformation goals. This ranges from enabling smart production lines to identifying leaking waterpipes, from optimising supply chains to creating more efficient farming methods. We are now ready to hyperscale IoT. We are bringing together partners, and technology to create the IoT eco-system for the next decade. Vodafone's partnership with Microsoft further gives us the potential to access new technologies such as Generative Artificial Intelligence ('Gen AI') and to deploy these at scale for IoT.\n\n[Read more about our partnership with Microsoft:](http://investors.vodafone.com/microsoft-strategic-partnership)  **[investors.vodafone.com/microsoft-strategic-partnership](http://investors.vodafone.com/microsoft-strategic-partnership)**\n\n[Watch our Vodafone Business investor briefing:](http://investors.vodafone.com/vbbriefing)  **[investors.vodafone.com/vbbriefing](http://investors.vodafone.com/vbbriefing)**",
+   "gold": [
+    "vendor"
+   ]
+  },
+  {
+   "id": "p20",
+   "text": "If we fail to effectively respond to the risk of climate change, we may compromise our reputation and strategy for growth. This is why we monitor it closely and continue to evaluate whether it should be considered a principal risk in the future.\n\n### **Other emerging risks**\n\nOther emerging risks currently being monitored include: the growing use of Artificial Intelligence and the opportunities and risks it might pose to Synthomer, such as in the area of novel chemical formulations; the impact of regulatory changes, including those relating to UK corporate governance and sustainability disclosures; and increased geopolitical uncertainty as a result of general election results and ongoing interstate conflicts, which may affect international trading activity, including as a result of changing sanctions or tariff policies.\n\n# <span id=\"page-49-0\"></span>Principal risks and uncertainties\n\n**Here we outline the most significant risks to our business. Other, lower-level risks could also affect the Group's performance, and these are actively managed through our risk management framework.**",
+   "gold": [
+    "risk"
+   ]
+  },
+  {
+   "id": "p21",
+   "text": "SWW\n\n#### Wastewater collection\n\nWe maintain and operate c.23,000km of sewers in the South West region, removing waste from the homes and properties of our customers. Through our programme of proactive interventions, informed by extensive data and AI, we keep our network in the best possible condition, identifying and repairing issues alongside an extensive sewer cleaning programme.\n\nSWW\n\n#### Services to homes, businesses and our wider communities",
+   "gold": [
+    "adoption"
+   ]
+  },
+  {
+   "id": "p22",
+   "text": "#### Monitoring macroeconomic and geopolitical uncertainties\n\nWe continue to evaluate the impact of macroeconomic and geopolitical uncertainties on our risk profile, with a particular focus on persistent inflation, interest rate volatility, geopolitical challenges arising from the ongoing conflicts in Ukraine and the Middle East and, more recently, the potential impact of global tariffs. In response we have maintained a risk focused approach to managing our business, particularly in relation to capital allocation and maintaining a strong financial position.\n\n#### Tracking emerging risks including AI\n\nWe proactively monitor emerging risks, assessing their potential impact and identifying opportunities. Our AI working group continues to track technological advancements, assess opportunities within our operations and manage associated risks to ensure responsible implementation.\n\n#### Refining business continuity plans\n\nOur business continuity plans have been further refined to ensure the ongoing resilience of critical operations. Key improvements include assessing IT system recovery time objectives, identifying necessary resources, and disaster recovery testing on key systems to strengthen our preparedness for potential disruptions.",
+   "gold": [
+    "risk"
+   ]
+  },
+  {
+   "id": "p23",
+   "text": "Customer loans\n\n(2023: $0.94tn)\n\nImproving operational excellence through artificial intelligence\n\nWe are transforming our operations to\n\nenhance customer experiences through the\n\nuse of artificial intelligence (\u2018AI\u2019) and\n\nautomation to help deliver faster,\n\npersonalised and more seamless services.",
+   "gold": [
+    "adoption"
+   ]
+  },
+  {
+   "id": "p24",
+   "text": "Operational highlights\n\n\u00b7\u00a0\u00a0\u00a0\u00a0\u00a0 Continued to drive productivity through focus on continuous improvement, including the automation of hundreds of tasks across the business\n\no\u00a0 Continued increase in gross profit per employee, up 4.4% to \u00a3118k (FY23: \u00a3113k), reflecting the success of efficiency initiatives such as robotic automation, AI and process change\n\n\u00b7\u00a0 \u00a0 Opening of the Group's new European showroom in Paris, ideally located for hosting both existing and prospective customers across the region, helping to grow sales in France by 78% to \u00a312.0m\n\n\u00b7\u00a0 \u00a0 Completion of the rebranding of the iconic Salter label, elevating its already strong identity and consumer recognition",
+   "gold": [
+    "adoption"
+   ]
+  },
+  {
+   "id": "p25",
+   "text": "# Other information\n\nFive-year summary 234\nFinancial key performance indicators 235\nAdditional information for US listing purposes 241\nShareholder information 262\n\n&gt; \u201cPearson continues to evolve with purpose, continuing to innovate and leverage AI to create sustainable value for learners, partners and shareholders.\u201d\n\nThe Strategic report, up to and including page 69, was approved for issue by the Board on 12 March 2026 and signed on its behalf by:\n\nSally Johnson\nChief Financial Officer",
+   "gold": [
+    "adoption"
+   ]
+  },
+  {
+   "id": "p26",
+   "text": "In July 2022, Frost & Sullivan, the research and consulting firm, analysed the manufacturing MQTT connectivity platforms industry and, based on its assessment results, recognised HiveMQ with the 2022 Global Entrepreneurial Company of the Year Award.\n\nIn September 2022, HiveMQ released a new feature that makes it possible to trace and debug MQTT data streams from device to cloud and back. Complete IoT observability requires insight into three pillars: metrics, traces and logs. HiveMQ has added distributed tracing to help organisations achieve end-to-end observability and make their IoT applications resilient and perform better.\n\nIn September 2022, HiveMQ announced the availability of he HiveMQ Enterprise Extension for Google Cloud Pub/Sub, a new feature that integrates MQTT data into Google Cloud. This allows organisations to benefit from HiveMQ's standards-based platform to send IoT data reliably and securely to Google Cloud enterprise services such as monitoring, advanced analytics and machine learning.\n\nLocation: Germany\n\nSector: Hardware & Deeptech",
+   "gold": []
+  },
+  {
+   "id": "p27",
+   "text": "including security awareness training and exercises. Key ICT and security risk controls are tested and\n\nmeasured at least annually through an independent assurance reporting audit. We have also implemented\n\npolicies, technical controls and training measures designed to safeguard customer data in AI operations.\n\nFor example, we have in place AI model-building controls, a company-wide policy that defines safeguards\n\nto limit customer data use, agreements with third-party AI providers prohibiting customer data from being\n\nused for model training and AI tool reviews before onboarding. We also adopted an AI ethics and\n\ngovernance policy, which establishes the ethical and legal framework for developing, deploying and using\n\nAI systems in our operations.\n\n**Business risk**\n\nWe define business risk as the risk to the delivery of Klarna\u2019s business objectives, its long-term",
+   "gold": [
+    "adoption",
+    "risk",
+    "vendor"
+   ]
+  },
+  {
+   "id": "p28",
+   "text": "We aim to be prudent managers of the firm's capital, and to drive consistent returns through client discipline, focused\n\nexecution, capital nimbleness and operational efficiency. We're also streamlining operations, reducing legacy systems, and\n\nleveraging AI to scale and innovate.\n\nWe continue to work collaboratively across the Investment Bank towards a core set of cross-business priorities to create\n\noutcomes that generate growth. We work as one division to deliver for our clients holistically, reviewing overall relationship",
+   "gold": [
+    "adoption"
+   ]
+  },
+  {
+   "id": "p29",
+   "text": "The Committee closely monitored advancements in power technology to ensure that the Company's energy solutions remained cutting-edge and sustainable. The potential impact on the Company of emerging trends and technological innovations were evaluated, ensuring that the business stayed ahead of industry developments.\n\nDiscussions included detail on the alignment of potential new products with the Company's strategic goals and customer requirements, with the aim of enhancing market competitiveness.\n\nBy focusing on these areas, the Technology Committee aims to support the Company's sustainability goals and drive technological innovation throughout 2025, including management of the Group's AI capabilities.\n\nI look forward to meeting shareholders and discussing the Committee's activities at the 2025 AGM.\n\n#### **Dana Tobak, CBE**",
+   "gold": [
+    "adoption"
+   ]
+  },
+  {
+   "id": "p30",
+   "text": "The Company\u2019s strategy is to deliver innovative fintech solutions, including secure cross-border payment\n\nservices and IT software development, to meet the banking needs of the Asian community and beyond.\n\nRecent initiatives include securing exclusive rights to YouneeqAI\u2019s AI-driven personalization platform in\n\nthe UK and a \u00a34 million convertible loan note with Mill End Capital to support global expansion. For\n\nfurther details on the market, strategy, and principal risks, shareholders are referred to the Strategic Report",
+   "gold": [
+    "adoption",
+    "vendor"
+   ]
+  },
+  {
+   "id": "p31",
+   "text": "HARMONY ENERGY INCOME TRUST PLC ANNUAL REPORT 2023\n\n92\n\nAll of the Company\u2019s operational BESS, including Little Raith (pictured), are operated through Autobidder, Tesla\u2019s algorithmic trading platform.\n\n93\n\nHARMONY ENERGY INCOME TRUST PLC ANNUAL REPORT 2023",
+   "gold": []
+  },
+  {
+   "id": "p32",
+   "text": "### PRUDENT RISK MANAGEMENT\nApply risk-adjusted pro\ufb01tability approach in decision-making.# OUR STRATEGIC APPROACH CONTINUED\n\nEnsure the Group maintains a high degree of resilience.\n\nLARGE DATA HUB\nUtilise our advanced data analytics capabilities to maximise customer value via personalised offerings. Continue to develop AI and automation solutions to enhance business processes.\n\nOUTSTANDING TEAM\nAttract, develop and retain the best talent.\n\n## OPERATIONS IN GEORGIA",
+   "gold": [
+    "adoption"
+   ]
+  },
+  {
+   "id": "p33",
+   "text": "**DESCRIPTION**\n\nCONTROLS AND MITIGATING ACTIONS\n\nFailure to become a digitally enabled business using tools including AI could hinder our ability to enhance the customer experience, drive the transition to lower carbon, accelerate product design, improve manufacturing and empower our people with new tools to improve productivity, as well as preventing us from creating new growth opportunities.\n\n*   Investment in R&D opportunities\n*   We scan the horizon for emerging technology threats and opportunities\n\nASSURANCE ACTIVITIES AND PROVIDERS",
+   "gold": [
+    "risk"
+   ]
+  },
+  {
+   "id": "p34",
+   "text": "# glossary\n\nAdministrator or Company Secretary: Ocorian Administration (UK) Limited.\n\nAI: artificial intelligence.\n\nAIC: The Association of Investment Companies, the trade body for UK-listed closed-ended investment companies.\n\nAIC SORP: The Statement of Recommended Practice for the Financial Statements of Investment Trust Companies and Venture Capital Trusts, issued by the AIC as amended from time to time.",
+   "gold": []
+  },
+  {
+   "id": "p35",
+   "text": "![img-43.jpeg](img-43.jpeg)\nDemand for health and wellbeing\n\n## Description\n\nIncreasing use of AI and data analytics enables us to better understand our catchments and continually evolve and curate our destinations to meet our changing customer and brand needs, in order to maximise the value of our digital and physical assets.\n\n## How we responded\n\nWe are investing in AI analytics, in a first for UK destinations, to understand in more detail customer engagement at asset and store level to optimise the mix and maximise relevant commercialisation opportunities across leasing, marketing events, and use of media screens.\n\nThis will create a more relevant and joined-up experience for visitors whilst also creating more opportunities for brands to showcase in our high footfall locations. This technology will provide detailed audience data for our media estate allowing our media to be sold more effectively through programmatic channels.\n\n## Description",
+   "gold": [
+    "adoption"
+   ]
+  },
+  {
+   "id": "p36",
+   "text": "## Operational risks\n\n### Risks arising from our people, processes, systems and external service providers\n\n**Emerging risks**\nWe monitor emerging regulatory developments and technological advancements, including the rise of artificial intelligence and broader digital disruption. These trends have the potential to reshape how financial services are delivered and consumed. As part of our strategy, we aim to adapt our platforms, processes and product offerings to remain compliant, competitive and aligned to evolving client expectations.\n\n### Financial crime\n\n**Key risk description**\nThe risk of money laundering, terrorist financing, sanctions violations, bribery, corruption and failures in Know Your Customer (\u201cKYC\u201d) procedures, which could lead to regulatory penalties, financial losses or reputational damage.",
+   "gold": [
+    "risk"
+   ]
+  },
+  {
+   "id": "p37",
+   "text": "**Mitigation**\nThe Group continues to invest to reduce data risk exposure to within appetite. Examples include:\n\n*   Delivering a data strategy.\n*   Enhancing data quality and capability.\n*   Embedding data by design and ethics.\n\n**Monitoring**\nThe Group continues to monitor and respond to data-related regulatory initiatives, such as the new Digital Protection and Digital Information Bill expected in 2024, and other legal regimes, for example, the European Commission\u2019s Artificial Intelligence Act. Data risk is governed through Group and sub-group committees. Significant issues are escalated to Group Risk Committee, in accordance with the Group\u2019s enterprise risk management framework, and RCSA frameworks. A number of activities support the close monitoring of data risk including:\n\n*   Design and monitoring of data risk appetite metrics, including key risk and performance indicators.\n*   Monitoring of significant data-related issues, complaints, events and breaches in accordance with Group Operational Risk and Data policies.\n*   Identification and mitigation of data risk when planning and implementing transformation or business change.\n\n### Funding and liquidity risk",
+   "gold": [
+    "risk"
+   ]
+  },
+  {
+   "id": "p38",
+   "text": "We are working with Neighbourly, a social platform that helps charities and community groups connect with companies who are looking to make a positive impact. By arranging volunteering activities through Neighbourly, we're able to keep track of the impact we're having as a business.\n\nOne of the volunteering opportunities centres around delivering Ai123 training, developed by Neighbourly in association with Microsoft. Neighbourly research\n\nfound that over 64% of small charity organisations said they were struggling to integrate AI due to limited understanding on where to start, resources and support. This campaign helps upskill our own colleagues to then enable them to deliver basic AI skills training to small good causes.\n\nIn the first four months of our pilot 35 colleagues have undertaken some form of digital skills volunteering.\n\n### Partnerships for Impact",
+   "gold": []
+  },
+  {
+   "id": "p39",
+   "text": "$\\sim 3,400$\n\nadditional colleagues retained (annualised)\n\nOur global recruitment teams have taken a decisive step forward, transforming how Serco attracts, recruits and retains the best talent in increasingly competitive labour markets through the accelerated global implementation of Phenom, a market-leading, AI-driven talent intelligence platform. Use of Phenom has supported recruitment's role as a strategic, data-led capability, delivering a consistent, high-quality experience for candidates and hiring leaders across the Group.\n\nAI-enabled sourcing, screening and engagement capabilities are introducing automation at scale, supporting faster, more informed hiring decisions, reducing reliance on agency recruitment and improving early-tenure retention in critical roles. We have simplified our technology landscape, strengthened data quality and created a foundation for more sophisticated workforce planning.\n\nSerco Group plc\n\nAnnual Report and Accounts 2025",
+   "gold": [
+    "adoption",
+    "vendor"
+   ]
+  },
+  {
+   "id": "p40",
+   "text": "The composition of the Board was positively rated.\n\n#### Board\u2019s expertise\n\nThe Board\u2019s understanding of the views of major investors and other stakeholders was rated positively but, given recent technological advances, Board members would benefit from more training in areas such as artificial intelligence (AI).\n\n## Re-election\n\nIn accordance with the Code, all Directors stand for re-election annually at each AGM.",
+   "gold": []
+  },
+  {
+   "id": "p41",
+   "text": "on payment transparency and wider payment infrastructure.\n\n\u2013 We conduct risk assessments and have governance in place (for\n\nexample on AI and digital assets and currencies) to help enable\n\nGroup-wide cross-risk focus on areas of emerging technology.\n\n\u2013 We seek to be transparent as to how we are engaging with new\n\ntechnology innovation, for example publishing HSBC\u2019s Principles for\n\nthe Ethical Use of Data and AI.\n\n\u2013 We continue to make improvements to our related policies and to\n\nour control framework to enhance the end-to-end management of",
+   "gold": [
+    "risk"
+   ]
+  },
+  {
+   "id": "p42",
+   "text": "Signed commercial agreements with both AT&T and Verizon to provide the company's first space-based broadband network direct to cell phones of their subscribers\n\n# **Spire Global:**  Announced collaboration\n\nwith Nvidia to further advance the company's AI-driven weather prediction capabilities\n\n#### **IPOs, M&A, Exits**\n\n#### **Astroscale:**",
+   "gold": []
+  },
+  {
+   "id": "p43",
+   "text": "\u00a3581.8m Operating profit\n\n#### Claims expertise\n\nOur vertically integrated claims model differentiates us and adds value giving the business a competitive advantage. We are fully focused on data, artificial intelligence (\u201cAI\u201d) and digital as these are the key capabilities needed to get results. As we further digitalise our claims journey we are aiming for increased simplicity and speed to give our customers peace of mind when they make an insurance claim and need us most.\n\n#### Efficient cost base\n\nThe implementation of our transformation programme is already reducing our cost to serve customers, while at the same time improving customer outcomes. As the business increasingly utilises the new technology we are becoming more efficient, pricing with greater speed and responding to changing market dynamics with greater agility.",
+   "gold": [
+    "adoption"
+   ]
+  },
+  {
+   "id": "p44",
+   "text": "Sofant achieved a major technical breakthrough in its RF MEMS technology, achieving world-class cycle reliability. The company's receive antenna was successfully tested on a Viasat satellite in Edinburgh on two separate occasions, marking a key technical milestone. The final version of the MEMS device has started production at Silex, with devices due to be assembled into the satellite terminals by Q4 2025.\n\nPost-balance sheet date developments:\n\nSofant has experienced significant growth in market interest, particularly in the aero market, including defence, , commercial, business jet and autonomous vehicle markets. The company anticipates launch of commercial sales in 2026. These developments underscore Sofant's continued progress and strategic positioning in the satellite and terrestrial communications market.\n\n**[ProAxsis Ltd (\"ProAxsis\")](https://proaxsis.com/)** [](https://proaxsis.com/)**[\\- Subsidiary](https://proaxsis.com/)**\n\n\u00b7\u00a0\u00a0\u00a0\u00a0\u00a0 Location: Belfast, UK;",
+   "gold": []
+  },
+  {
+   "id": "p45",
+   "text": "#### Information Technology, United States\n\nMicrosoft, known for its Windows operating system, the Xbox gaming console and cloud computing service Azure, is in a prime position to benefit from a new 'golden era' of investment in technology. IT investment is becoming crucial for every aspect of corporate life \u2013 infrastructure, marketing, sales and commerce \u2013 and Microsoft stands to capture a significant share of this double-digitgrowing expenditure. Furthermore, a progressive move towards a subscription-based model is improving the company's pricing power and its competitive position in the market.\n\nMicrosoft's Environmental, Social and Governance strengths, in our view, are strong management and a relatively diverse board. We note Microsoft's positive contribution to tackling climate change and social issues with such initiatives as 'AI for Earth' and various educational programmes.\n\n![](_page_23_Picture_8.jpeg)\n\n### Taiwan Semiconductor Manufacturing ('TSMC')",
+   "gold": []
+  },
+  {
+   "id": "p46",
+   "text": "Withdrawal of the Companies (Strategic Report and Directors' Report) (Amendment) Regulations 2023 announced.\n\n### November 2023\n\n- **Noted** FY24 half year accounts (including accounting judgements and going concern) and Half Year Results announcement.\n- **Reviewed** the report on the half year audit review from PwC.\n- **Reviewed** an Internal Audit update.\n- **Noted** the withdrawal of the UK Government's new reporting regulations and considered the implications on the Company.\n- **Approved** global AI and data retention policies at the recommendation of the Operating Committee.\n\n### January 2024\n\n- **Reviewed** an update from the Tax team, including tax strategy and horizon scanning.\n- **Approved** the FY24 tax strategy statement.\n- **Reviewed** and approved the FY24 external audit plan.\n- **Reviewed** an Internal Audit update, including risks and risk management.\n- **Reviewed** an update on data security maturity.\n- **Reviewed** the Committee's terms of reference.\n- **Reviewed** the Non-Audit Services Policy.\n- **Approved** the Group-wide Conflicts of Interest Policy.\n- **Approved** the forward agenda planner for FY25.",
+   "gold": []
+  },
+  {
+   "id": "p47",
+   "text": "OPERATING SEGMENT REVIEW CONTINUED\n\n## EMERGING AUTOMOTIVE AND INDUSTRIAL\n\nEmerging Automotive and Industrial is a trusted partner for the next generation of sustainable mobility. Leveraging expertise in power electronic systems and propulsion systems, software and digital technologies for connected, autonomous vehicles, we deliver clean, efficient and integrated propulsion and energy solutions to support our clients in their energy transitions. Specialists in energy transition propulsion, driveline, and controls design, optimisation, and prototype development.\n\n### HIGHLIGHTS*\n\n|                               | 2022/23     | 2021/22 (CC) | 2021/22     |\n| :---------------------------- | :---------- | :----------- | :---------- |\n| **-19% Order intake**         | \u00a384.3m      | \u00a3104.6m      | \u00a3101.3m     |\n| **+3% Order book**            | \u00a355.0m      | \u00a353.3m       | \u00a355.4m      |\n| **+16% Revenue**              | \u00a382.3m      | \u00a371.1m       | \u00a369.1m      |\n| **+279% Underlying operating profit** | \u00a310.6m      | \u00a32.8m        | \u00a32.7m       |\n| **+9.0pp Underlying operating profit margin** | 12.9%       | 3.9%         | 3.9%        |\n| **-20% Headcount**            | 435         | 542          |             |",
+   "gold": []
+  },
+  {
+   "id": "p48",
+   "text": "| | | | | | --- | --- | --- | --- | | | FY25 | FY24 | Change on FY24 | | Website users | 24.9m | 23.7m | +5% | | Conversion rate | 4.04% | 3.93% | +11bps | | Average order value | \u00a3147 | \u00a3153 | \\-4% | | Active customers | 846,000 | 799,000 | +6% | | Products listed | 63,300 | 63,000 | \\- | Business review I am pleased to report a resilient performance in FY25, having delivered financial and strategic progress despite ongoing macroeconomic pressures and a subdued consumer spending environment, a temporary setback in H1 due to issues with an outsourced AI-based marketing system that has since been resolved, and aggressive discounting from underperforming competitors prior to their market exit. These achievements are underpinned by the exceptional commitment and contribution of our entire team, to whom I extend my sincere appreciation. In the face of these challenges, the Group achieved year-on-year revenue growth, maintained gross margin stability, and upheld rigorous cost discipline. These efforts contributed to an increase in reported EBITDA and a \u00a31.0 million year-on-year improvement in Profit Before Tax. Additionally, we recorded a further reduction in net bank debt, resulting in a leverage ratio of 0.6x FY25 EBITDA (FY24: 0.8x), marking a further strengthening of the Group's financial position. Combined with the extension of our \u00a330 million Revolving Credit Facility, the Group possesses the financial stability and flexibility to accelerate growth initiatives while continuing to [...]",
+   "gold": [
+    "adoption",
+    "harm",
+    "vendor"
+   ]
+  },
+  {
+   "id": "p49",
+   "text": "| | | | | | --- | --- | --- | --- | | | FY25 | FY24 | Change on FY24 | | | \u00a3m | \u00a3m | % | | Other-brand product revenue | 104.7 | 100.4 | +4% | | Own-brand product revenue | 35.7 | 37.6 | \\-5% | | Carriage income | 5.7 | 5.8 | \\-1% | | Other | 0.6 | 0.6 | \\- | | Revenue | 146.7 | 144.4 | +2% | Other brand revenue of \u00a3104.7m was \u00a34.3m ahead of last year (4%) reversing a \u00a35.8m (5%) decrease in FY24, reflecting opportunities for particular brands in certain territories. Own-brand revenue of \u00a335.7m was \u00a31.9m (5%) down on FY24, impacted by a slow start to the year as teething problems with an outsourced AI-based marketing system led to an under-allocation of spend on higher margin categories including own-brand. Nevertheless own-brand still accounted for 24.3% of total revenue (FY24: 26.0%) from 8.8% (FY24: 8.5%) of SKUs. It is our ambition to grow our own-brand business and to support this we have further invested in our own-brand team. Carriage income totalled \u00a35.7m representing a small decrease of \u00a30.1m (1%) compared to the prior year. This equated to 3.9% of total sales, down slightly from 4.0% in the previous year, reflecting a lower level of cost recharging in a highly competitive market environment. Other revenue comprises paid for extended warranty income, and commissions earned on facilitating point-of-sale credit for retail customers. The proportion [...]",
+   "gold": [
+    "adoption",
+    "harm",
+    "vendor"
+   ]
+  },
+  {
+   "id": "p50",
+   "text": "### Cybersecurity Strengthening resilience in a complex and evolving threat landscape Cybersecurity is a foundational pillar of our resilience, digital assurance and operational continuity. Over the past year, we have accelerated our efforts to address a rapidly evolving cyber threat landscape, driven by increasingly sophisticated tactics, including the emergence of AI-powered attack methods and more persistent, targeted threats. This environment challenges all organisations to respond in real time and reinforces the importance of continuous vigilance, rapid detection and response readiness. We are actively investing in the upskilling of our workforce through role-specific training, simulated threat exercises and enhanced awareness campaigns to build a strong, security-conscious culture across the organisation. Recognising the increasing complexity of our global operations and legacy infrastructure, we have launched a series of strategic initiatives aimed at enhancing standardisation, visibility and control across our global technology estate. These programmes are delivering near-term risk reduction and supporting our long-term ambition to operate within a more secure and well-governed digital framework. Key initiatives include the adoption of zero trust security principles, reinforcement of cloud and endpoint defences and the implementation of centralised threat detection and response capabilities. Cybersecurity governance has been embedded into our enterprise risk management framework, with regular oversight and reporting at Executive and Board levels. As we continue to mature our capabilities, we remain committed to ensuring our platforms, people and processes evolve in step with the changing threat landscape, enabling secure growth and sustainable innovation with a strong foundation of digital assurance. ### Internal control [...]",
+   "gold": [
+    "risk"
+   ]
+  }
+ ],
+ "models": {
+  "anthropic:claude-haiku-4-5": {
+   "preds": [
+    [
+     "adoption"
+    ],
+    [
+     "adoption"
+    ],
+    [
+     "risk"
+    ],
+    [],
+    [
+     "risk"
+    ],
+    [
+     "adoption"
+    ],
+    [
+     "adoption",
+     "risk"
+    ],
+    [
+     "adoption"
+    ],
+    [
+     "adoption",
+     "vendor"
+    ],
+    [
+     "risk"
+    ],
+    [],
+    [
+     "adoption"
+    ],
+    [
+     "risk",
+     "vendor"
+    ],
+    [
+     "adoption",
+     "vendor"
+    ],
+    [
+     "risk"
+    ],
+    [],
+    [
+     "adoption",
+     "vendor"
+    ],
+    [],
+    [
+     "adoption",
+     "vendor"
+    ],
+    [
+     "risk"
+    ],
+    [
+     "adoption"
+    ],
+    [
+     "risk"
+    ],
+    [
+     "adoption"
+    ],
+    [
+     "adoption"
+    ],
+    [
+     "adoption"
+    ],
+    [],
+    [
+     "adoption",
+     "risk",
+     "vendor"
+    ],
+    [
+     "adoption"
+    ],
+    [],
+    [
+     "adoption",
+     "vendor"
+    ],
+    [
+     "adoption",
+     "vendor"
+    ],
+    [
+     "adoption"
+    ],
+    [
+     "risk"
+    ],
+    [],
+    [
+     "adoption"
+    ],
+    [
+     "risk"
+    ],
+    [
+     "risk"
+    ],
+    [
+     "adoption",
+     "vendor"
+    ],
+    [
+     "adoption"
+    ],
+    [],
+    [],
+    [
+     "adoption",
+     "vendor"
+    ],
+    [
+     "adoption"
+    ],
+    [],
+    [],
+    [
+     "adoption"
+    ],
+    [
+     "adoption"
+    ],
+    [
+     "harm",
+     "vendor"
+    ],
+    [
+     "adoption",
+     "harm"
+    ],
+    [
+     "risk"
+    ]
+   ],
+   "stats": {
+    "per_class": {
+     "adoption": {
+      "p": 0.6666666666666666,
+      "r": 0.9,
+      "f": 0.7659574468085106,
+      "tp": 18,
+      "fp": 9,
+      "fn": 2,
+      "support": 20
+     },
+     "risk": {
+      "p": 1.0,
+      "r": 0.8666666666666667,
+      "f": 0.9285714285714286,
+      "tp": 13,
+      "fp": 0,
+      "fn": 2,
+      "support": 15
+     },
+     "vendor": {
+      "p": 0.45454545454545453,
+      "r": 0.7142857142857143,
+      "f": 0.5555555555555556,
+      "tp": 5,
+      "fp": 6,
+      "fn": 2,
+      "support": 7
+     },
+     "harm": {
+      "p": 1.0,
+      "r": 1.0,
+      "f": 1.0,
+      "tp": 2,
+      "fp": 0,
+      "fn": 0,
+      "support": 2
+     }
+    },
+    "micro_f": 0.7835051546391751,
+    "macro_f": 0.8125211077338736,
+    "micro_p": 0.7169811320754716,
+    "micro_r": 0.8636363636363636,
+    "macro_support": [
+     "adoption",
+     "risk",
+     "vendor",
+     "harm"
+    ]
+   }
+  },
+  "anthropic:claude-sonnet-5": {
+   "preds": [
+    [
+     "adoption"
+    ],
+    [
+     "adoption"
+    ],
+    [
+     "risk"
+    ],
+    [],
+    [
+     "risk"
+    ],
+    [],
+    [
+     "adoption",
+     "risk"
+    ],
+    [],
+    [
+     "adoption",
+     "vendor"
+    ],
+    [
+     "risk"
+    ],
+    [],
+    [
+     "adoption"
+    ],
+    [
+     "risk"
+    ],
+    [
+     "adoption"
+    ],
+    [
+     "risk"
+    ],
+    [],
+    [
+     "adoption"
+    ],
+    [
+     "risk"
+    ],
+    [
+     "adoption",
+     "vendor"
+    ],
+    [
+     "risk"
+    ],
+    [
+     "adoption"
+    ],
+    [
+     "adoption",
+     "risk"
+    ],
+    [
+     "adoption"
+    ],
+    [
+     "adoption"
+    ],
+    [
+     "adoption"
+    ],
+    [],
+    [
+     "adoption",
+     "vendor"
+    ],
+    [
+     "adoption"
+    ],
+    [
+     "adoption"
+    ],
+    [
+     "adoption",
+     "vendor"
+    ],
+    [
+     "adoption",
+     "vendor"
+    ],
+    [
+     "adoption"
+    ],
+    [
+     "risk"
+    ],
+    [],
+    [
+     "adoption"
+    ],
+    [
+     "risk"
+    ],
+    [
+     "risk"
+    ],
+    [
+     "adoption"
+    ],
+    [
+     "adoption",
+     "vendor"
+    ],
+    [],
+    [
+     "adoption",
+     "risk"
+    ],
+    [
+     "adoption",
+     "vendor"
+    ],
+    [
+     "adoption"
+    ],
+    [],
+    [
+     "adoption"
+    ],
+    [
+     "adoption"
+    ],
+    [],
+    [
+     "adoption",
+     "harm",
+     "vendor"
+    ],
+    [
+     "adoption",
+     "harm",
+     "vendor"
+    ],
+    [
+     "risk"
+    ]
+   ],
+   "stats": {
+    "per_class": {
+     "adoption": {
+      "p": 0.6896551724137931,
+      "r": 1.0,
+      "f": 0.8163265306122449,
+      "tp": 20,
+      "fp": 9,
+      "fn": 0,
+      "support": 20
+     },
+     "risk": {
+      "p": 1.0,
+      "r": 0.9333333333333333,
+      "f": 0.9655172413793104,
+      "tp": 14,
+      "fp": 0,
+      "fn": 1,
+      "support": 15
+     },
+     "vendor": {
+      "p": 0.7777777777777778,
+      "r": 1.0,
+      "f": 0.8750000000000001,
+      "tp": 7,
+      "fp": 2,
+      "fn": 0,
+      "support": 7
+     },
+     "harm": {
+      "p": 1.0,
+      "r": 1.0,
+      "f": 1.0,
+      "tp": 2,
+      "fp": 0,
+      "fn": 0,
+      "support": 2
+     }
+    },
+    "micro_f": 0.8775510204081632,
+    "macro_f": 0.9142109429978889,
+    "micro_p": 0.7962962962962963,
+    "micro_r": 0.9772727272727273,
+    "macro_support": [
+     "adoption",
+     "risk",
+     "vendor",
+     "harm"
+    ]
+   }
+  },
+  "openai:gpt-5-nano": {
+   "preds": [
+    [
+     "adoption"
+    ],
+    [
+     "adoption"
+    ],
+    [
+     "risk"
+    ],
+    [],
+    [
+     "risk"
+    ],
+    [],
+    [
+     "adoption",
+     "risk"
+    ],
+    [],
+    [
+     "adoption",
+     "vendor"
+    ],
+    [
+     "risk"
+    ],
+    [],
+    [
+     "adoption"
+    ],
+    [
+     "risk"
+    ],
+    [
+     "adoption",
+     "vendor"
+    ],
+    [],
+    [],
+    [
+     "adoption"
+    ],
+    [],
+    [
+     "adoption",
+     "vendor"
+    ],
+    [
+     "risk"
+    ],
+    [
+     "adoption"
+    ],
+    [
+     "adoption",
+     "risk"
+    ],
+    [
+     "adoption"
+    ],
+    [
+     "adoption"
+    ],
+    [
+     "adoption"
+    ],
+    [],
+    [
+     "adoption",
+     "vendor"
+    ],
+    [
+     "adoption"
+    ],
+    [
+     "adoption"
+    ],
+    [
+     "adoption",
+     "vendor"
+    ],
+    [
+     "adoption",
+     "vendor"
+    ],
+    [
+     "adoption"
+    ],
+    [
+     "risk"
+    ],
+    [],
+    [
+     "adoption"
+    ],
+    [
+     "risk"
+    ],
+    [
+     "risk"
+    ],
+    [
+     "adoption"
+    ],
+    [
+     "adoption",
+     "vendor"
+    ],
+    [],
+    [],
+    [
+     "adoption",
+     "vendor"
+    ],
+    [
+     "adoption"
+    ],
+    [],
+    [
+     "adoption"
+    ],
+    [
+     "adoption"
+    ],
+    [],
+    [
+     "adoption",
+     "harm",
+     "vendor"
+    ],
+    [
+     "adoption",
+     "harm",
+     "vendor"
+    ],
+    [
+     "risk"
+    ]
+   ],
+   "stats": {
+    "per_class": {
+     "adoption": {
+      "p": 0.7142857142857143,
+      "r": 1.0,
+      "f": 0.8333333333333333,
+      "tp": 20,
+      "fp": 8,
+      "fn": 0,
+      "support": 20
+     },
+     "risk": {
+      "p": 1.0,
+      "r": 0.7333333333333333,
+      "f": 0.846153846153846,
+      "tp": 11,
+      "fp": 0,
+      "fn": 4,
+      "support": 15
+     },
+     "vendor": {
+      "p": 0.7,
+      "r": 1.0,
+      "f": 0.8235294117647058,
+      "tp": 7,
+      "fp": 3,
+      "fn": 0,
+      "support": 7
+     },
+     "harm": {
+      "p": 1.0,
+      "r": 1.0,
+      "f": 1.0,
+      "tp": 2,
+      "fp": 0,
+      "fn": 0,
+      "support": 2
+     }
+    },
+    "micro_f": 0.8421052631578948,
+    "macro_f": 0.8757541478129713,
+    "micro_p": 0.7843137254901961,
+    "micro_r": 0.9090909090909091,
+    "macro_support": [
+     "adoption",
+     "risk",
+     "vendor",
+     "harm"
+    ]
+   }
+  },
+  "openai:gpt-5-mini": {
+   "preds": [
+    [
+     "adoption"
+    ],
+    [
+     "adoption"
+    ],
+    [
+     "risk"
+    ],
+    [],
+    [
+     "risk"
+    ],
+    [
+     "adoption"
+    ],
+    [
+     "adoption",
+     "risk"
+    ],
+    [],
+    [
+     "adoption",
+     "vendor"
+    ],
+    [
+     "risk"
+    ],
+    [],
+    [
+     "adoption"
+    ],
+    [
+     "risk"
+    ],
+    [
+     "adoption",
+     "vendor"
+    ],
+    [
+     "risk"
+    ],
+    [],
+    [
+     "adoption"
+    ],
+    [
+     "risk"
+    ],
+    [
+     "adoption",
+     "vendor"
+    ],
+    [
+     "risk"
+    ],
+    [
+     "adoption"
+    ],
+    [
+     "adoption",
+     "risk"
+    ],
+    [
+     "adoption"
+    ],
+    [
+     "adoption"
+    ],
+    [
+     "adoption"
+    ],
+    [],
+    [
+     "adoption",
+     "vendor"
+    ],
+    [
+     "adoption"
+    ],
+    [
+     "adoption"
+    ],
+    [
+     "adoption",
+     "vendor"
+    ],
+    [
+     "adoption",
+     "vendor"
+    ],
+    [
+     "adoption"
+    ],
+    [
+     "risk"
+    ],
+    [],
+    [
+     "adoption"
+    ],
+    [
+     "risk"
+    ],
+    [
+     "risk"
+    ],
+    [
+     "adoption"
+    ],
+    [
+     "adoption",
+     "vendor"
+    ],
+    [],
+    [
+     "risk"
+    ],
+    [
+     "adoption",
+     "vendor"
+    ],
+    [
+     "adoption"
+    ],
+    [],
+    [
+     "adoption"
+    ],
+    [
+     "adoption"
+    ],
+    [],
+    [
+     "adoption",
+     "harm",
+     "vendor"
+    ],
+    [
+     "adoption",
+     "harm",
+     "vendor"
+    ],
+    [
+     "risk"
+    ]
+   ],
+   "stats": {
+    "per_class": {
+     "adoption": {
+      "p": 0.6896551724137931,
+      "r": 1.0,
+      "f": 0.8163265306122449,
+      "tp": 20,
+      "fp": 9,
+      "fn": 0,
+      "support": 20
+     },
+     "risk": {
+      "p": 1.0,
+      "r": 0.9333333333333333,
+      "f": 0.9655172413793104,
+      "tp": 14,
+      "fp": 0,
+      "fn": 1,
+      "support": 15
+     },
+     "vendor": {
+      "p": 0.7,
+      "r": 1.0,
+      "f": 0.8235294117647058,
+      "tp": 7,
+      "fp": 3,
+      "fn": 0,
+      "support": 7
+     },
+     "harm": {
+      "p": 1.0,
+      "r": 1.0,
+      "f": 1.0,
+      "tp": 2,
+      "fp": 0,
+      "fn": 0,
+      "support": 2
+     }
+    },
+    "micro_f": 0.8686868686868686,
+    "macro_f": 0.9013432959390653,
+    "micro_p": 0.7818181818181819,
+    "micro_r": 0.9772727272727273,
+    "macro_support": [
+     "adoption",
+     "risk",
+     "vendor",
+     "harm"
+    ]
+   }
+  },
+  "openai:gpt-5": {
+   "preds": [
+    [
+     "adoption"
+    ],
+    [
+     "adoption"
+    ],
+    [
+     "risk"
+    ],
+    [],
+    [
+     "risk"
+    ],
+    [],
+    [
+     "risk"
+    ],
+    [],
+    [
+     "adoption",
+     "vendor"
+    ],
+    [
+     "risk"
+    ],
+    [],
+    [
+     "adoption"
+    ],
+    [
+     "risk"
+    ],
+    [
+     "adoption"
+    ],
+    [
+     "risk"
+    ],
+    [],
+    [
+     "adoption"
+    ],
+    [],
+    [
+     "vendor"
+    ],
+    [
+     "risk"
+    ],
+    [
+     "adoption"
+    ],
+    [
+     "risk"
+    ],
+    [
+     "adoption"
+    ],
+    [
+     "adoption"
+    ],
+    [
+     "adoption"
+    ],
+    [],
+    [
+     "adoption",
+     "risk",
+     "vendor"
+    ],
+    [
+     "adoption"
+    ],
+    [
+     "adoption"
+    ],
+    [
+     "vendor"
+    ],
+    [
+     "adoption",
+     "vendor"
+    ],
+    [
+     "adoption"
+    ],
+    [
+     "risk"
+    ],
+    [],
+    [
+     "adoption"
+    ],
+    [
+     "risk"
+    ],
+    [
+     "risk"
+    ],
+    [],
+    [
+     "adoption",
+     "vendor"
+    ],
+    [],
+    [
+     "risk"
+    ],
+    [
+     "adoption",
+     "vendor"
+    ],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [
+     "adoption",
+     "harm",
+     "vendor"
+    ],
+    [
+     "adoption",
+     "harm",
+     "vendor"
+    ],
+    [
+     "risk"
+    ]
+   ],
+   "stats": {
+    "per_class": {
+     "adoption": {
+      "p": 0.9,
+      "r": 0.9,
+      "f": 0.9,
+      "tp": 18,
+      "fp": 2,
+      "fn": 2,
+      "support": 20
+     },
+     "risk": {
+      "p": 1.0,
+      "r": 0.9333333333333333,
+      "f": 0.9655172413793104,
+      "tp": 14,
+      "fp": 0,
+      "fn": 1,
+      "support": 15
+     },
+     "vendor": {
+      "p": 0.7777777777777778,
+      "r": 1.0,
+      "f": 0.8750000000000001,
+      "tp": 7,
+      "fp": 2,
+      "fn": 0,
+      "support": 7
+     },
+     "harm": {
+      "p": 1.0,
+      "r": 1.0,
+      "f": 1.0,
+      "tp": 2,
+      "fp": 0,
+      "fn": 0,
+      "support": 2
+     }
+    },
+    "micro_f": 0.9213483146067416,
+    "macro_f": 0.9351293103448276,
+    "micro_p": 0.9111111111111111,
+    "micro_r": 0.9318181818181818,
+    "macro_support": [
+     "adoption",
+     "risk",
+     "vendor",
+     "harm"
+    ]
+   }
+  },
+  "anthropic:claude-opus-5": {
+   "preds": [
+    [
+     "adoption"
+    ],
+    [
+     "adoption"
+    ],
+    [
+     "risk"
+    ],
+    [],
+    [
+     "risk"
+    ],
+    [],
+    [
+     "adoption",
+     "risk"
+    ],
+    [],
+    [
+     "adoption"
+    ],
+    [
+     "risk"
+    ],
+    [],
+    [
+     "adoption"
+    ],
+    [
+     "risk"
+    ],
+    [
+     "adoption"
+    ],
+    [
+     "risk"
+    ],
+    [],
+    [
+     "adoption"
+    ],
+    [
+     "risk"
+    ],
+    [
+     "adoption",
+     "vendor"
+    ],
+    [
+     "risk"
+    ],
+    [
+     "adoption"
+    ],
+    [
+     "risk"
+    ],
+    [
+     "adoption"
+    ],
+    [
+     "adoption"
+    ],
+    [
+     "adoption"
+    ],
+    [],
+    [
+     "adoption",
+     "vendor"
+    ],
+    [
+     "adoption"
+    ],
+    [
+     "adoption"
+    ],
+    [
+     "adoption",
+     "vendor"
+    ],
+    [
+     "adoption",
+     "vendor"
+    ],
+    [
+     "adoption"
+    ],
+    [
+     "risk"
+    ],
+    [],
+    [
+     "adoption"
+    ],
+    [
+     "risk"
+    ],
+    [
+     "risk"
+    ],
+    [],
+    [
+     "adoption",
+     "vendor"
+    ],
+    [],
+    [
+     "adoption",
+     "risk"
+    ],
+    [],
+    [
+     "adoption"
+    ],
+    [],
+    [],
+    [],
+    [],
+    [
+     "adoption",
+     "harm",
+     "vendor"
+    ],
+    [
+     "adoption",
+     "harm",
+     "vendor"
+    ],
+    [
+     "risk"
+    ]
+   ],
+   "stats": {
+    "per_class": {
+     "adoption": {
+      "p": 0.8333333333333334,
+      "r": 1.0,
+      "f": 0.9090909090909091,
+      "tp": 20,
+      "fp": 4,
+      "fn": 0,
+      "support": 20
+     },
+     "risk": {
+      "p": 1.0,
+      "r": 0.9333333333333333,
+      "f": 0.9655172413793104,
+      "tp": 14,
+      "fp": 0,
+      "fn": 1,
+      "support": 15
+     },
+     "vendor": {
+      "p": 0.8571428571428571,
+      "r": 0.8571428571428571,
+      "f": 0.8571428571428571,
+      "tp": 6,
+      "fp": 1,
+      "fn": 1,
+      "support": 7
+     },
+     "harm": {
+      "p": 1.0,
+      "r": 1.0,
+      "f": 1.0,
+      "tp": 2,
+      "fp": 0,
+      "fn": 0,
+      "support": 2
+     }
+    },
+    "micro_f": 0.9230769230769231,
+    "macro_f": 0.9329377519032691,
+    "micro_p": 0.8936170212765957,
+    "micro_r": 0.9545454545454546,
+    "macro_support": [
+     "adoption",
+     "risk",
+     "vendor",
+     "harm"
+    ]
+   }
+  }
+ },
+ "ranking": [
+  "openai:gpt-5",
+  "anthropic:claude-opus-5",
+  "anthropic:claude-sonnet-5",
+  "openai:gpt-5-mini",
+  "openai:gpt-5-nano",
+  "anthropic:claude-haiku-4-5"
+ ],
+ "bootstrap_vs_top": {
+  "anthropic:claude-opus-5": {
+   "lo": -0.08791208791208793,
+   "hi": 0.09520045922837539,
+   "p_leq_0": 0.4517,
+   "n_clusters": 44
+  },
+  "anthropic:claude-sonnet-5": {
+   "lo": -0.02662337662337666,
+   "hi": 0.07391958921843877,
+   "p_leq_0": 0.1617,
+   "n_clusters": 44
+  },
+  "openai:gpt-5-mini": {
+   "lo": -0.011710948374992536,
+   "hi": 0.10282662420593447,
+   "p_leq_0": 0.0669,
+   "n_clusters": 44
+  },
+  "openai:gpt-5-nano": {
+   "lo": 0.011227116704805473,
+   "hi": 0.14653481529911727,
+   "p_leq_0": 0.0096,
+   "n_clusters": 44
+  },
+  "anthropic:claude-haiku-4-5": {
+   "lo": 0.06334016860332647,
+   "hi": 0.24113051699258603,
+   "p_leq_0": 0.0,
+   "n_clusters": 44
+  }
+ }
+}

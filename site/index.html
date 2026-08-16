@@ -1,0 +1,538 @@
+<title>Who Grades the Graders?</title>
+<style>
+  :root {
+    --paper: #fbfbf9;
+    --paper-2: #f3f3ef;
+    --ink: #16150f;
+    --ink-2: #52514e;
+    --ink-3: #8a8880;
+    --rule: #dddcd4;
+    --accent: #2a78d6;
+    --accent-ink: #1c5cab;
+    --accent-wash: #eaf2fc;
+    --c-adoption: #2a78d6;
+    --c-risk: #eb6834;
+    --c-vendor: #1baf7a;
+    --c-harm: #e34948;
+    --good: #008300;
+    --bad: #e34948;
+    --bar: #86b6ef;
+    --bar-top: #256abf;
+    --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Times New Roman", serif;
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #191915;
+      --paper-2: #222219;
+      --ink: #ecebe3;
+      --ink-2: #c3c2b7;
+      --ink-3: #8a8880;
+      --rule: #3a3a33;
+      --accent: #3987e5;
+      --accent-ink: #86b6ef;
+      --accent-wash: #1d2a3d;
+      --c-adoption: #3987e5;
+      --c-risk: #d95926;
+      --c-vendor: #199e70;
+      --c-harm: #e66767;
+      --good: #4caf50;
+      --bad: #e66767;
+      --bar: #1c5cab;
+      --bar-top: #5598e7;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #191915;
+    --paper-2: #222219;
+    --ink: #ecebe3;
+    --ink-2: #c3c2b7;
+    --ink-3: #8a8880;
+    --rule: #3a3a33;
+    --accent: #3987e5;
+    --accent-ink: #86b6ef;
+    --accent-wash: #1d2a3d;
+    --c-adoption: #3987e5;
+    --c-risk: #d95926;
+    --c-vendor: #199e70;
+    --c-harm: #e66767;
+    --good: #4caf50;
+    --bad: #e66767;
+    --bar: #1c5cab;
+    --bar-top: #5598e7;
+  }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.55;
+    margin: 0;
+  }
+  .wrap { max-width: 860px; margin: 0 auto; padding: 0 20px 96px; }
+
+  header.masthead { padding: 64px 0 28px; border-bottom: 3px double var(--rule); }
+  .eyebrow {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--ink-3); margin: 0 0 14px;
+  }
+  h1 {
+    font-family: var(--serif); font-weight: 600; font-size: clamp(34px, 6vw, 54px);
+    line-height: 1.06; margin: 0 0 18px; text-wrap: balance; letter-spacing: -0.01em;
+  }
+  .standfirst { font-family: var(--serif); font-size: 19px; color: var(--ink-2); max-width: 46em; margin: 0; }
+  .standfirst em { color: var(--ink); }
+
+  section { margin-top: 56px; }
+  .item-label {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--accent-ink); margin: 0 0 6px;
+  }
+  h2 {
+    font-family: var(--serif); font-weight: 600; font-size: 27px;
+    margin: 0 0 14px; text-wrap: balance;
+  }
+  h3 { font-family: var(--serif); font-weight: 600; font-size: 19px; margin: 22px 0 8px; }
+  p { max-width: 44em; margin: 0 0 14px; }
+  p.small, .small { font-size: 13.5px; color: var(--ink-2); }
+  code, .mono { font-family: var(--mono); font-size: 0.92em; }
+  .formula {
+    font-family: var(--mono); font-size: 14px; background: var(--paper-2);
+    border: 1px solid var(--rule); border-radius: 6px; padding: 12px 16px;
+    overflow-x: auto; margin: 14px 0; white-space: nowrap;
+  }
+  a { color: var(--accent-ink); }
+
+  .notice {
+    border: 1px solid var(--rule); border-left: 4px solid var(--accent);
+    background: var(--paper-2); border-radius: 6px; padding: 14px 18px;
+    font-size: 14.5px; margin: 18px 0; max-width: 46em;
+  }
+
+  /* label definition cards */
+  .labels-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; margin: 20px 0; }
+  .label-card { border: 1px solid var(--rule); border-radius: 8px; padding: 16px 18px; background: var(--paper-2); }
+  .label-card h4 { display: flex; align-items: center; gap: 8px; margin: 0 0 8px; font-family: var(--mono); font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; }
+  .label-card p { font-size: 13.5px; color: var(--ink-2); margin: 0 0 6px; }
+  .label-card p strong { color: var(--ink); }
+  .dot { width: 10px; height: 10px; border-radius: 50%; flex: none; }
+
+  /* chips */
+  .chip {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.03em;
+    border: 1px solid var(--rule); background: var(--paper);
+    border-radius: 999px; padding: 2px 9px 2px 6px; color: var(--ink-2);
+  }
+  .chip .dot { width: 8px; height: 8px; }
+  .chip.none { color: var(--ink-3); font-style: italic; }
+
+  /* controls */
+  .controls {
+    display: flex; flex-wrap: wrap; gap: 18px 28px; align-items: flex-end;
+    border: 1px solid var(--rule); border-radius: 8px; background: var(--paper-2);
+    padding: 16px 20px; margin: 22px 0;
+  }
+  .control label { display: block; font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 7px; }
+  .control input[type=range] { width: 220px; accent-color: var(--accent); }
+  .beta-readout { font-family: var(--mono); font-size: 13px; color: var(--ink); }
+  .seg { display: inline-flex; border: 1px solid var(--rule); border-radius: 6px; overflow: hidden; }
+  .seg button {
+    font-family: var(--mono); font-size: 12.5px; padding: 6px 14px; border: none;
+    background: var(--paper); color: var(--ink-2); cursor: pointer;
+  }
+  .seg button + button { border-left: 1px solid var(--rule); }
+  .seg button[aria-pressed="true"] { background: var(--accent); color: #fff; }
+  .seg button:focus-visible, .controls input:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  /* ranking table */
+  .tablewrap { overflow-x: auto; margin: 18px 0; }
+  table { border-collapse: collapse; width: 100%; font-size: 14px; }
+  th { font-family: var(--mono); font-size: 11px; letter-spacing: 0.09em; text-transform: uppercase; color: var(--ink-3); text-align: left; font-weight: 500; padding: 8px 14px 8px 0; border-bottom: 1px solid var(--ink); white-space: nowrap; }
+  td { padding: 9px 14px 9px 0; border-bottom: 1px solid var(--rule); vertical-align: baseline; }
+  td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+  td.num { font-family: var(--mono); font-size: 13.5px; }
+  tr.top td { background: var(--accent-wash); }
+  tr.top td:first-child { border-radius: 6px 0 0 6px; }
+  tr.top td:last-child { border-radius: 0 6px 6px 0; }
+  .modelname { font-weight: 600; white-space: nowrap; }
+  .provider { font-family: var(--mono); font-size: 11px; color: var(--ink-3); display: block; }
+
+  /* bars */
+  .barchart { margin: 24px 0 8px; display: grid; gap: 10px; }
+  .barrow { display: grid; grid-template-columns: 170px 1fr 58px; align-items: center; gap: 12px; }
+  .barrow .blabel { font-size: 13px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .bartrack { background: var(--paper-2); border-radius: 4px; height: 18px; position: relative; }
+  .barfill { position: absolute; inset: 0 auto 0 0; background: var(--bar); border-radius: 0 4px 4px 0; min-width: 2px; transition: width 0.25s ease; }
+  .barrow.top .barfill { background: var(--bar-top); }
+  .barval { font-family: var(--mono); font-size: 12.5px; text-align: right; font-variant-numeric: tabular-nums; }
+  @media (prefers-reduced-motion: reduce) { .barfill { transition: none; } }
+
+  /* CI plot */
+  .ciplot { margin: 10px 0 4px; }
+  .ciplot svg { display: block; width: 100%; height: auto; }
+  .ci-note { font-size: 12.5px; color: var(--ink-3); font-family: var(--mono); }
+
+  /* passage browser */
+  .filters { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0 18px; }
+  .filters button {
+    font-family: var(--mono); font-size: 12px; padding: 5px 12px; cursor: pointer;
+    border: 1px solid var(--rule); border-radius: 999px; background: var(--paper); color: var(--ink-2);
+  }
+  .filters button[aria-pressed="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+  .passage {
+    border: 1px solid var(--rule); border-radius: 8px; margin-bottom: 12px;
+    background: var(--paper-2); overflow: hidden;
+  }
+  .passage summary {
+    cursor: pointer; padding: 12px 16px; display: flex; flex-wrap: wrap; gap: 6px 12px; align-items: baseline;
+    list-style: none;
+  }
+  .passage summary::-webkit-details-marker { display: none; }
+  .passage summary .pid { font-family: var(--mono); font-size: 11.5px; color: var(--ink-3); }
+  .passage summary .pcompany { font-size: 13.5px; font-weight: 600; }
+  .passage .pbody { padding: 0 16px 14px; border-top: 1px solid var(--rule); }
+  .passage blockquote {
+    font-family: var(--serif); font-size: 14.5px; color: var(--ink-2);
+    margin: 12px 0; padding: 0 0 0 14px; border-left: 3px solid var(--rule);
+    max-height: 240px; overflow-y: auto;
+  }
+  .predrow { display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: center; margin: 6px 0; font-size: 12.5px; }
+  .predrow .who { font-family: var(--mono); font-size: 11px; color: var(--ink-3); width: 150px; flex: none; }
+  .verdict { font-family: var(--mono); font-size: 11px; }
+  .verdict.ok { color: var(--good); }
+  .verdict.miss { color: var(--bad); }
+  .gnote { font-size: 12.5px; color: var(--ink-3); font-style: italic; }
+
+  footer { margin-top: 72px; padding-top: 18px; border-top: 3px double var(--rule); font-size: 12.5px; color: var(--ink-3); }
+  footer p { margin: 0 0 6px; }
+  .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+</style>
+
+<div class="wrap">
+<header class="masthead">
+  <p class="eyebrow">AI Risk Observatory · Judge validation demo · n = 50 passages</p>
+  <h1>Who Grades the Graders?</h1>
+  <p class="standfirst">A pipeline labels annual-report passages as <em>AI adoption, risk, vendor, or harm</em>. An LLM judge assigns more labels than the human annotators did — and spot checks say many of the extra labels are valid. Is the LLM judge better? This page makes the question precise, then answers it for a bench of current models on real Observatory data.</p>
+</header>
+
+<section id="question">
+  <p class="item-label">Item 1 · The question</p>
+  <h2>"Better" is undefined until you fix three things</h2>
+  <p>A judge that emits more labels will usually trade precision for recall: fewer missed labels (false negatives), more spurious ones (false positives). Whether that trade is an improvement is not a fact about the judge — it depends on three commitments the evaluator has to make explicitly:</p>
+  <p><strong>1. A ground truth</strong> that is independent of both judges — otherwise "the human missed valid labels" and "the LLM hallucinates labels" are indistinguishable claims.<br>
+  <strong>2. An error-cost weighting</strong> — how much a false positive hurts relative to a false negative. F<sub>β</sub> makes that weighting a single explicit parameter instead of a hidden assumption.<br>
+  <strong>3. A test of the difference</strong> — with a finite evaluation set, an observed gap can be an artifact of which passages happened to be sampled. A paired bootstrap answers whether the gap survives resampling.</p>
+  <p>Everything below is that recipe, executed end-to-end on the <a href="https://github.com/84rt/AI-Risk-Observatory">AIRO v1.0 dataset</a> (AI Security Institute, CC&nbsp;BY&nbsp;4.0): 24,189 AI-keyword passages from 11,112 UK annual reports, 2020–2025.</p>
+</section>
+
+<section id="groundtruth">
+  <p class="item-label">Item 2 · Ground truth</p>
+  <h2>A written rubric, applied blind</h2>
+  <p>Fifty passages were sampled from the AIRO golden set, stratified across the pipeline's own phase-1 strata so all four labels and the no-label case appear (all three <span class="chip"><span class="dot" style="background:var(--c-harm)"></span>harm</span> passages in the corpus are included — at 3 in 24,189, harm is the class that breaks naive averaging). Each passage was then hand-labeled against the four definitions below by <strong>Claude (Fable 5)</strong>, working from a written rubric fixed <em>before</em> any judge was run, seeing only the passage text — no company metadata, no judge outputs.</p>
+  <div class="labels-grid">
+    <div class="label-card">
+      <h4><span class="dot" style="background:var(--c-adoption)"></span>adoption</h4>
+      <p>The reporting company itself uses, deploys, develops, pilots, or integrates AI in its operations, products, or services.</p>
+      <p><strong>Not:</strong> industry commentary, uncommitted aspiration ("we may explore AI"), or a portfolio company's / customer's use.</p>
+    </div>
+    <div class="label-card">
+      <h4><span class="dot" style="background:var(--c-risk)"></span>risk</h4>
+      <p>AI identified as a source of <em>potential</em> adverse outcome for the company — operational, model error, security, regulatory, reputational, competitive. Boilerplate risk-factor language counts.</p>
+      <p><strong>Not:</strong> AI used as a risk-mitigation tool (that's adoption).</p>
+    </div>
+    <div class="label-card">
+      <h4><span class="dot" style="background:var(--c-vendor)"></span>vendor</h4>
+      <p>The company obtains AI capability from, or depends on, an external party — third-party models, cloud AI services, AI platforms, AI-critical compute framed as a dependency.</p>
+      <p><strong>Not:</strong> generic IT outsourcing, or the company <em>selling</em> AI to others.</p>
+    </div>
+    <div class="label-card">
+      <h4><span class="dot" style="background:var(--c-harm)"></span>harm</h4>
+      <p>A negative AI-related event that <em>has happened</em> or is concretely in progress — an incident, filed litigation, discovered failure, realized loss.</p>
+      <p><strong>Not:</strong> potential-only language; that stays risk. Tense is the boundary.</p>
+    </div>
+  </div>
+  <p class="small">The mere appearance of the word "AI" never suffices for any label; negations get none; the empty set is a valid answer (15 of 50 passages carry no label). The full rubric, with tie-breakers and boundary rules, ships with the code. Every gold decision is inspectable in Item&nbsp;6, including the deliberately strict calls — e.g. a platform described only as "algorithmic" is not AI-framed <em>in the passage</em>, so it earns nothing.</p>
+  <div class="notice"><strong>Declared conflict:</strong> the ground truth was written by an Anthropic model and the bench ranks Anthropic models among others. In a real validation this is disqualifying — the rubric-writer and the adjudicator must be independent of every judge under test. Here it is a demo constraint, stated rather than hidden; read the Anthropic rows with that discount.</div>
+</section>
+
+<section id="metric">
+  <p class="item-label">Item 3 · The metric</p>
+  <h2>F<sub>β</sub> puts the FP/FN exchange rate on a dial</h2>
+  <p>For each label class, precision P = TP/(TP+FP) and recall R = TP/(TP+FN) are computed over all 50 passages, then combined:</p>
+  <div class="formula">F<sub>β</sub> = (1 + β²) · P · R / (β² · P + R)</div>
+  <p>β is the exchange rate: <strong>β&nbsp;&lt;&nbsp;1</strong> penalizes false positives more (a strict auditor's judge), <strong>β&nbsp;&gt;&nbsp;1</strong> penalizes misses more (a screening judge feeding human review). <strong>Micro</strong>-averaging pools every (passage,&nbsp;label) decision, so common classes dominate; <strong>macro</strong>-averaging gives each of the four classes equal weight, so the rare harm class counts as much as adoption. For the Observatory — whose output is <em>prevalence statistics for governments</em>, where under-counting rare substantive disclosure is the costlier error — a screening posture (β ≥ 1) with macro visibility on rare classes is the defensible default. The dial below lets you disagree.</p>
+</section>
+
+<section id="inference">
+  <p class="item-label">Item 4 · Inference</p>
+  <h2>A paired bootstrap decides if the gap is real</h2>
+  <p>The evaluation set is 50 passages; a different sample would give different scores. To test whether judge A actually outperforms judge B, passages are resampled with replacement B&nbsp;=&nbsp;2,000 times — keeping each passage's gold labels and <em>both</em> judges' predictions together, so the comparison stays paired — and Δ&nbsp;=&nbsp;F<sub>β</sub>(A)&nbsp;−&nbsp;F<sub>β</sub>(B) is recomputed on each resample. The 95% interval of those Δs, and the one-sided p-value <span class="mono">p&nbsp;=&nbsp;#{Δ&nbsp;≤&nbsp;0}/B</span>, are reported below. Intervals that cross zero mean the ranking at that β is not settled by these 50 passages.</p>
+  <p class="small">Honest footnote: passages cluster within filings (two of the harm passages come from the same Gear4Music report), so the exchangeable-passage bootstrap here is slightly anti-conservative; at production scale you resample at the document level.</p>
+</section>
+
+<section id="results">
+  <p class="item-label">Item 5 · Results</p>
+  <h2 id="results-h2">The bench</h2>
+  <div id="results-body"></div>
+</section>
+
+<section id="browser">
+  <p class="item-label">Item 6 · The evidence</p>
+  <h2>Every passage, every call</h2>
+  <p class="small">Gold labels with the rubric note that justifies them, against each judge's prediction. Filter to the disagreements — they are where the methodology earns its keep.</p>
+  <div class="filters" id="filters" role="group" aria-label="Passage filters"></div>
+  <div id="passages"></div>
+</section>
+
+<section id="limits">
+  <p class="item-label">Item 7 · Limitations</p>
+  <h2>What this demo does not license</h2>
+  <p><strong>One annotator, no agreement ceiling.</strong> Ground truth here is a single (machine) annotator applying a rubric. A real validation needs ≥2 independent expert annotators and a reported inter-annotator agreement — the ceiling any judge comparison must be read against.</p>
+  <p><strong>Judge–adjudicator dependence.</strong> As declared in Item 2: an Anthropic-authored gold standard plausibly flatters Anthropic judges (shared training priors about label semantics), and the same critique applies to any lab's model grading its own family.</p>
+  <p><strong>Selection via the pipeline's own strata.</strong> Sampling was stratified on AIRO's phase-1 labels to guarantee class coverage, so class balance is designed, not natural — per-class scores are meaningful, pooled prevalence is not.</p>
+  <p><strong>Single operating points.</strong> Each judge ran one prompt at default settings. An LLM judge's precision/recall point is cheap to move (prompt strictness, self-consistency); ranking judges at arbitrary operating points conflates tuning with ability.</p>
+  <p><strong>n = 50.</strong> Deliberately small enough to hand-adjudicate every disagreement — the bootstrap intervals below are wide, and that is the honest message of the page: at this n, most "who's better" claims don't clear zero.</p>
+</section>
+
+<footer>
+  <p>Data: AI Risk Observatory Dataset v1.0, AI Security Institute, April 2026 (CC BY 4.0). Passages quoted from UK public-company annual reports for research.</p>
+  <p>Built as a methodology demo for the SPAR "Global AI Risk Observatory" application. Ground-truth rubric and labels: Claude Fable 5. Metrics recompute live in this page; bootstrap uses a fixed seed for reproducibility.</p>
+</footer>
+</div>
+
+<script>
+const DATA = {"passages": [{"id": "p01", "company": "Prudential PLC", "year": 2026, "text": "the platform demonstrates meaningful channel shift towards digital self‑service. The proportion of new business-processing\n\nthrough auto-underwriting was 70 per cent in December 2025.\n\nWe are also leveraging artificial intelligence across several customer touchpoints. AI‑enabled claims adjudication is improving\n\nspeed, accuracy and efficiency in claims processing, enhancing overall satisfaction while supporting operational scalability.\n\n26", "gold": ["adoption"], "gold_note": "AI-enabled claims adjudication in own ops."}, {"id": "p02", "company": "Reckitt Benckiser Group PLC", "year": 2026, "text": "2025 contribution:\n0bps\n(reflecting phasing, with larger benefits in later years)\n\n## 4\n\n### Digital and generative AI\n\nThese capabilities are now being deployed across core business processes and are already embedded into ways of working in marketing. The same approach is being applied in R&amp;D, while early pilots in forecasting and supply chain diagnostics are demonstrating potential for greater accuracy. The focus is on reducing cost and on building speed, precision and higher-value execution across the Business. SAP modernisation is also progressing, enabling more standardised global processes.\n\n![img-38.jpeg](img-38.jpeg)", "gold": ["adoption"], "gold_note": "GenAI deployed across core processes; embedded in marketing."}, {"id": "p03", "company": "TRIFAST PLC", "year": 2024, "text": "#### **Emerging risks**\n\nAgility and speed of adaptation In a rapidly changing world our ability to recognise each new challenge and opportunity as they develop and work with our suppliers to deliver customer solutions is critical to delivering our strategy.\n\n#### AI and disruptive technology\n\nAdvances in technology help us to continually improve our customer service, and we anticipate that the use of AI in industry will produce a step change in technological solutions. The uncontrolled use of AI also brings a significant change in online threats and methods used to bypass cybersecurity.\n\n#### Inventory management\n\nIn establishing our UK NDC we have packed and shipped products from our existing UK sites into one warehouse, requiring additional controls and management activities to ensure that the stock integrity is protected. There is opportunity to consolidate stock of the same items that were previously held at each location and improve inventory management.", "gold": ["risk"], "gold_note": "Uncontrolled AI -> cyber threats; own-use claim is industry-level only."}, {"id": "p04", "company": "Senior PLC", "year": 2022, "text": "The following# STRATEGIC PRIORITIES AND BUSINESS MODEL\n\nOur six strategic priorities are key elements of our business model, which drive the creation of stakeholder value. Our progress since they were established is noted below and they continue to receive specific attention and focus.\n\n## 1. ENHANCE SENIOR’S AUTONOMOUS AND COLLABORATIVE BUSINESS MODEL\n\nSenior’s business model is one of empowering and holding accountable our businesses, operating within a clearly defined control framework to develop and deliver business plans in line with overall Group strategy. Increasing collaboration amongst businesses in the Group is a priority to ensure economies of scale are realised whilst maintaining the autonomous business structure. Business leaders throughout Senior are actively embracing collaboration activities with priorities set at Group level in consultation with the businesses.\n\n### What we did in 2021:\n\n*   Implemented engagement guidelines to help optimise the transfer of work to cost competitive locations and to facilitate higher level solutions to meet customer needs;", "gold": [], "gold_note": "No AI content in passage."}, {"id": "p05", "company": "Shaftesbury Capital Plc (formerly: Capital & Counties Properties Plc)", "year": 2026, "text": "·      Planning and environmental policy changes affecting development feasibility, cost and timelines;\n\n·      Changes to residential rent controls; and\n\n·      Technology disruption (particularly the impact of AI) and associated cyber, fraud and business-model impacts across customer and operations.\n\nEmerging risks with a longer-term horizon include:\n\n·      Shifts in social dynamics and demographics, including changes in how space is used, patterns of urbanisation, consumer spending and travel patterns;", "gold": ["risk"], "gold_note": "AI listed under technology-disruption risk."}, {"id": "p06", "company": "RC365 HOLDING PLC", "year": 2024, "text": "Strategy\n\nOur vision remains unchanged, which is to grow our share of our existing markets, develop new capabilities and enter new geographies within the fast growing and attractive industries in which we operate.\n\nIn particular, we intend to focus on growing our presence in Japan, the ASEAN region and the UK; broaden our offering to include virtual banking and expand our card solutions; and explore new product innovations that leverage Web 3.0 and artificial intelligence. A key element in achieving this will be establishing strategic partnerships with global companies in the fintech ecosystem, which we significantly progressed during the year.\n\nPost year-end\n\nRCTech successfully received conditional approval from the Trade and Industry Department of the Hong Kong SAR Government for a grant of HK$0.9 million. This grant will facilitate the Group's projects in Malaysia as we continue to expand our operations within the region.", "gold": [], "gold_note": "'Explore innovations leveraging AI' = aspiration, no commitment."}, {"id": "p07", "company": "HSBC Holdings PLC", "year": 2025, "text": "approach to model risk management, which poses execution\n\nchallenges. The adoption of more sophisticated modelling approaches\n\nincluding AI and technology related developments by both HSBC and\n\nthe financial services industry could also lead to increased model risk.\n\nHSBC’s commitment to changes to business activities due to climate", "gold": ["risk"], "gold_note": "AI model adoption -> increased model risk; use is hypothetical."}, {"id": "p08", "company": "BRITISH SMALLER COMPANIES VCT2 PLC", "year": 2023, "text": "New Investments\n\nThe Company invested £16.3 million in the year. Six new investments were made in the year, totalling £8.1 million.  In our continued support of the portfolio, nine companies received follow-on funding in the year, totalling £8.2 million in aggregate. The new investments are:\n\n|     |     |\n| --- | --- |\n| Investment | Sector |\n| AutomatePro | SaaS platform providing test-automation tools for ServiceNow |\n| Biorelate | Medical data curation |\n| Plandek | DevOps analytics platform |\n| Quality Clouds | Quality control technology for low code software solutions |\n| Relative Insight | AI-based text data analytics platform |\n| Summize | Contract lifecycle management software provider |\n\n## Financial Results\n\nDuring the year, the Board paid ordinary dividends of 3.0 pence per ordinary share in respect of the year ended 31 December 2022, bringing the cumulative dividends paid as at 31 December 2022 to 81.0 pence per ordinary share.", "gold": [], "gold_note": "Portfolio company's AI, not the reporting company's."}, {"id": "p09", "company": "MS INTERNATIONAL PLC", "year": 2022, "text": "# **Simplify**\n\n#### **Simplify IT transformation**\n\nSopra Steria and Micro Focus collaborate regularly on a range of IT initiatives aimed at championing digital transformation, both within Sopra Steria and on behalf of its clients. Aligning with corporate green initiatives to move to cloud deployment, Sopra Steria achieved cost reductions and built-in scalability by migrating from Micro Focus Service Manager to Micro Focus SMAX, gaining AI and machine learning capabilities, and delivering agile and cost-effective service management to clients. The team achieved improved service delivery with additional modules, and increased service agent productivity.\n\n**\"The team immediately identified the value of the extra SMAX functionality, such as social interaction, machine learning analytics, and AI-driven ticket routing management and classification. We could leverage our existing investment with Micro Focus, and a proof-of-concept demonstrated that migrating from Service Manager to SMAX was easier than migrating to ServiceNow.\"**\n\n**Patrick Bailly** Domain Owner ITSM & Tools Sopra Steria\n\n**Strengthen**", "gold": ["adoption", "vendor"], "gold_note": "Subject company gains AI/ML via Micro Focus SMAX migration."}, {"id": "p10", "company": "Rentokil Initial PLC", "year": 2026, "text": "• Number of serious IT incidents and time taken to respond\n• Major Incident Review actions\n• Actions arising from IT security self-assessments and monitoring of cyber exposure score and security risk rating\n• External testing and benchmarking of our IT security environment\n\n# Emerging risks\n\n• Increasingly sophisticated phishing and spoofing attempts\n• Increase in volume of cyber attacks driven by AI\n\n**Overall risk: High Trend: Increasing** Increasingly sophisticated phishing and spoofing attempts result in this risk being classified as high and increasing.\n\n**Principal risk: Operational Failure to ensure business continuity in case of a material incident**", "gold": ["risk"], "gold_note": "Cyber attacks driven by AI = emerging risk, High/Increasing."}, {"id": "p11", "company": "BRITISH SMALLER COMPANIES VCT PLC", "year": 2022, "text": "## New Investments\n\nTwo new investments were made in the year, totalling £5.1 million. We continue to fund growth in existing portfolio businesses, and hence seven companies received follow-on funding in the year, totalling £4.6 million in aggregate. The new investments are:\n\n| Investment       | Sector                                |\n|------------------|---------------------------------------|\n| Vuealta          | AI-based text data analytics platform |\n|                  | Business planning software and services |\n\n## Financial Results\n\nThe combination of strong performance and realisations enabled the Board to pay interim dividends of 9.0 pence per ordinary share in respect of the year ended 31 March 2022, bringing the cumulative dividends paid to 31 March 2022 to 166.4 pence per ordinary share. The movement in net asset value (“NAV”) per ordinary share and the dividends paid are set out in the table below:", "gold": [], "gold_note": "Portfolio company's AI, not the reporting company's."}, {"id": "p12", "company": "SThree PLC", "year": 2021, "text": "We have ring-fenced our own digital transformation projects, and allocated more resources to removing manually intensive processes, bypassing legacy IT and simplifying customer journeys. We invested in technology in response to the health crisis, to allow our people to work remotely.\n\nWe moved to the proactive assessment of immediate shifts in the supply and demand curve for the components of STEM skills, which helped us organise our work and response.\n\nWe remained agile to the changing demands for the digitisation of recruitment processes. We have been sourcing candidates via digital online boards and social media, adopting customised screening parameters to allow industry and job-specific background checks. We applied state-of-the-art AI solutions to make informed decisions in shortlisting candidates and to find the best quality candidates who are a good fit to organisation culture.\n\n#### **How we are responding to evolving trends**\n\nWithin SThree we believe that correct management and utilisation of data is core to driving efficiencies and supporting strategic decision-making.", "gold": ["adoption"], "gold_note": "Applied AI solutions to candidate shortlisting; no vendor stated."}, {"id": "p13", "company": "Antofagasta PLC", "year": 2026, "text": "**Risk appetite:** ☐\n**Risk level:** ☑\n\n### Preventive and mitigation measures\n\nCyber security threats are an inherent element of our digital operations, intensified by greater connectivity, the use of AI technologies and reliance on third-party systems. We focus on maintaining the availability, integrity and resilience of our networks through continuous strengthening of critical cyber controls and real-time monitoring of IT services.\n\nOur cyber security model aligns with recognised standards such as ISO 27000 and the NIST (National Institute of Standards and Technology) framework, supported by audits to identify vulnerabilities and a structured response and recovery model for cyber incidents, including strategic and technical activation layers. Business continuity plans and no-system procedures are triggered when required.\n\nWe also foster an internal cyber security culture through awareness programmes, ethical phishing exercises and targeted initiatives designed to enhance organisational resilience.", "gold": ["risk"], "gold_note": "Cyber threats intensified by AI use; attribution of use ambiguous."}, {"id": "p14", "company": "KIN AND CARTA PLC", "year": 2022, "text": "FY22 was a year of accelerated growth for our Americas region.\n\nStrong demand drove regional net revenue growth of 55% year-on-year (49% organic) to £132.2 million, with 31 new clients added, nine with an annual run rate over $1 million. In line with our global delivery strategy, 68% of new hires in the Americas region were in the Latin America territory, bolstering nearshore delivery capability, including 77 Kin in our newest office in Bogota, Colombia.\n\nIndustry sector progress included continued scaling of agriculture, notable gains in financial services (including a record $90 million contract), and innovative work in retail and quick service restaurants. Acquisition of the remaining 50% of joint-venture Loop Integration boosted commerce capabilities, while the IP acquisition of Octain artificial intelligence (AI) accelerated our clients' paths to unlocking the value from their data.\n\nFollowing a comprehensive search and selection process, Adam Hasemeyer, formerly President of Kin + Carta's West Territory, has been appointed Group Chief Executive Officer, Americas.\n\nEurope", "gold": ["adoption"], "gold_note": "Acquired Octain AI IP used for clients; not an ongoing dependency."}, {"id": "p15", "company": "JPMorgan Euro Discovery Trust PLC", "year": 2024, "text": "### Strategic Report\n\n### Business Review# Principal and Emerging Risks\n\nThe Committee has conducted horizon scanning and other than the exacerbation of geopolitical events in Ukraine & the Middle East, growing usage of Artificial Intelligence and continuing Climate Change, it does not believe that there are any new emerging risks. The risks together with how these are mitigated and managed, as far as practicable, are set out in the table below.\n\n## RISK & DESCRIPTION\nInvestment Performance and Strategy\nPerformance of the Company’s investment portfolio is fundamental to the success of the company. An inappropriate investment strategy, or poor implementation of the strategy, for example relating to concentration of investments, asset allocation, the level of gearing or the degree of portfolio risk.\n\nDiscount/Premium Control\nShare price premium volatility and deep discount to net asset value per share leads to a sense of uncertainty reducing shareholder confidence. Potentially triggering shareholder intervention.", "gold": ["risk"], "gold_note": "Growing AI usage flagged as emerging risk in horizon scan."}, {"id": "p16", "company": "Bytes Technology Group PLC", "year": 2024, "text": "## <span id=\"page-195-0\"><\/span>Glossary\n\n**Admission:** the admission of BTG's shares to the premium listing segment of the Official List and to trading on the London Stock Exchange's Main Market and on the Main Board of the Johannesburg Stock Exchange via secondary inward listing\n\n**AI:** artificial intelligence\n\n**Altron Limited:** a public company incorporated and registered in accordance with South African law, with registration number 1947/024583/06\n\n**Articles:** the articles of association of the company", "gold": [], "gold_note": "Glossary definition only."}, {"id": "p17", "company": "INTELLIGENT ULTRASOUND GROUP PLC", "year": 2021, "text": "We continue to progress our 'Classroom to Clinic' ultrasound strategy based on:\n\n·      Growing simulation revenues from our direct UK and US operations and global reseller channels, by expanding our range of ultrasound training simulators into new medical market sectors; and\n\n·      Building on our partnership with GE Healthcare, that incorporates our ScanNav AI technology in their latest ultrasound systems, to grow clinical AI revenues through royalty-based licences with ultrasound machine manufacturers; and\n\n·      Marketing, through our direct sales organisation, proprietary stand-alone AI systems that target the large pool of existing ultrasound machines.\n\nThree years on from our strategic 'Classroom to Clinic' expansion, we believe the successful progress of all parts of the business is reaffirming the wisdom of this decision and we look forward to continuing to build on this momentum.\n\nBoard and governance", "gold": ["adoption"], "gold_note": "Sells own ScanNav AI; selling TO GE is not vendor dependence."}, {"id": "p18", "company": "Future PLC", "year": 2023, "text": "we need to do, if we operate the business effectively, if we innovate, if we grow, everything else will take care of itself.\n\nFundamentally though, the diverse nature of Future creates strength and resilience in a more turbulent market as evidenced by our revenue of £788.9m and adjusted operating\n\nprofit of £256.4m and our strong cash conversion of 99%. At this time of traffic and AI uncertainty, advertisers are moving to high-intent audiences, which is what our brands provide.\n\nYou joined Future in April 2023, can you explain your strategy for the Group?\n\nWe are launching GAS - Growth Acceleration Strategy. This is the next phase of growth for the Group. What is clear to me is the impressive energy", "gold": ["risk"], "gold_note": "'Traffic and AI uncertainty' = market risk to advertising."}, {"id": "p19", "company": "Vodafone Group PLC", "year": 2025, "text": "Forecast for the number of connected devices by 2032, increasing from 2.9 billion in 2022.\n\n# **The opportunity for Vodafone**\n\nVodafone is a global leader in managed IoT connectivity services, recognised for its extensive reach and innovative solutions. Vodafone has helped thousands of companies achieve their transformation goals. This ranges from enabling smart production lines to identifying leaking waterpipes, from optimising supply chains to creating more efficient farming methods. We are now ready to hyperscale IoT. We are bringing together partners, and technology to create the IoT eco-system for the next decade. Vodafone's partnership with Microsoft further gives us the potential to access new technologies such as Generative Artificial Intelligence ('Gen AI') and to deploy these at scale for IoT.\n\n[Read more about our partnership with Microsoft:](http://investors.vodafone.com/microsoft-strategic-partnership)  **[investors.vodafone.com/microsoft-strategic-partnership](http://investors.vodafone.com/microsoft-strategic-partnership)**\n\n[Watch our Vodafone Business investor briefing:](http://investors.vodafone.com/vbbriefing)  **[investors.vodafone.com/vbbriefing](http://investors.vodafone.com/vbbriefing)**", "gold": ["vendor"], "gold_note": "Microsoft partnership provides GenAI access; deployment potential only."}, {"id": "p20", "company": "Synthomer PLC", "year": 2024, "text": "If we fail to effectively respond to the risk of climate change, we may compromise our reputation and strategy for growth. This is why we monitor it closely and continue to evaluate whether it should be considered a principal risk in the future.\n\n### **Other emerging risks**\n\nOther emerging risks currently being monitored include: the growing use of Artificial Intelligence and the opportunities and risks it might pose to Synthomer, such as in the area of novel chemical formulations; the impact of regulatory changes, including those relating to UK corporate governance and sustainability disclosures; and increased geopolitical uncertainty as a result of general election results and ongoing interstate conflicts, which may affect international trading activity, including as a result of changing sanctions or tariff policies.\n\n# <span id=\"page-49-0\"><\/span>Principal risks and uncertainties\n\n**Here we outline the most significant risks to our business. Other, lower-level risks could also affect the Group's performance, and these are actively managed through our risk management framework.**", "gold": ["risk"], "gold_note": "AI named among emerging risks to Synthomer."}, {"id": "p21", "company": "Pennon Group PLC", "year": 2023, "text": "SWW\n\n#### Wastewater collection\n\nWe maintain and operate c.23,000km of sewers in the South West region, removing waste from the homes and properties of our customers. Through our programme of proactive interventions, informed by extensive data and AI, we keep our network in the best possible condition, identifying and repairing issues alongside an extensive sewer cleaning programme.\n\nSWW\n\n#### Services to homes, businesses and our wider communities", "gold": ["adoption"], "gold_note": "Network interventions informed by data and AI."}, {"id": "p22", "company": "British Land Co PLC", "year": 2025, "text": "#### Monitoring macroeconomic and geopolitical uncertainties\n\nWe continue to evaluate the impact of macroeconomic and geopolitical uncertainties on our risk profile, with a particular focus on persistent inflation, interest rate volatility, geopolitical challenges arising from the ongoing conflicts in Ukraine and the Middle East and, more recently, the potential impact of global tariffs. In response we have maintained a risk focused approach to managing our business, particularly in relation to capital allocation and maintaining a strong financial position.\n\n#### Tracking emerging risks including AI\n\nWe proactively monitor emerging risks, assessing their potential impact and identifying opportunities. Our AI working group continues to track technological advancements, assess opportunities within our operations and manage associated risks to ensure responsible implementation.\n\n#### Refining business continuity plans\n\nOur business continuity plans have been further refined to ensure the ongoing resilience of critical operations. Key improvements include assessing IT system recovery time objectives, identifying necessary resources, and disaster recovery testing on key systems to strengthen our preparedness for potential disruptions.", "gold": ["risk"], "gold_note": "AI tracked as emerging risk; working group assesses, not deploys."}, {"id": "p23", "company": "HSBC Holdings PLC", "year": 2025, "text": "Customer loans\n\n(2023: $0.94tn)\n\nImproving operational excellence through artificial intelligence\n\nWe are transforming our operations to\n\nenhance customer experiences through the\n\nuse of artificial intelligence (‘AI’) and\n\nautomation to help deliver faster,\n\npersonalised and more seamless services.", "gold": ["adoption"], "gold_note": "Transforming operations through AI and automation."}, {"id": "p24", "company": "UP GLOBAL SOURCING HOLDINGS PLC", "year": 2024, "text": "Operational highlights\n\n·      Continued to drive productivity through focus on continuous improvement, including the automation of hundreds of tasks across the business\n\no  Continued increase in gross profit per employee, up 4.4% to £118k (FY23: £113k), reflecting the success of efficiency initiatives such as robotic automation, AI and process change\n\n·    Opening of the Group's new European showroom in Paris, ideally located for hosting both existing and prospective customers across the region, helping to grow sales in France by 78% to £12.0m\n\n·    Completion of the rebranding of the iconic Salter label, elevating its already strong identity and consumer recognition", "gold": ["adoption"], "gold_note": "Efficiency initiatives incl. robotic automation and AI."}, {"id": "p25", "company": "Pearson PLC", "year": 2026, "text": "# Other information\n\nFive-year summary 234\nFinancial key performance indicators 235\nAdditional information for US listing purposes 241\nShareholder information 262\n\n&gt; “Pearson continues to evolve with purpose, continuing to innovate and leverage AI to create sustainable value for learners, partners and shareholders.”\n\nThe Strategic report, up to and including page 69, was approved for issue by the Board on 12 March 2026 and signed on its behalf by:\n\nSally Johnson\nChief Financial Officer", "gold": ["adoption"], "gold_note": "'Continuing to innovate and leverage AI' - general but asserted."}, {"id": "p26", "company": "Molten Ventures PLC", "year": 2023, "text": "In July 2022, Frost & Sullivan, the research and consulting firm, analysed the manufacturing MQTT connectivity platforms industry and, based on its assessment results, recognised HiveMQ with the 2022 Global Entrepreneurial Company of the Year Award.\n\nIn September 2022, HiveMQ released a new feature that makes it possible to trace and debug MQTT data streams from device to cloud and back. Complete IoT observability requires insight into three pillars: metrics, traces and logs. HiveMQ has added distributed tracing to help organisations achieve end-to-end observability and make their IoT applications resilient and perform better.\n\nIn September 2022, HiveMQ announced the availability of he HiveMQ Enterprise Extension for Google Cloud Pub/Sub, a new feature that integrates MQTT data into Google Cloud. This allows organisations to benefit from HiveMQ's standards-based platform to send IoT data reliably and securely to Google Cloud enterprise services such as monitoring, advanced analytics and machine learning.\n\nLocation: Germany\n\nSector: Hardware & Deeptech", "gold": [], "gold_note": "Portfolio company + generic GCP ML mention."}, {"id": "p27", "company": "Klarna Group plc", "year": 2026, "text": "including security awareness training and exercises. Key ICT and security risk controls are tested and\n\nmeasured at least annually through an independent assurance reporting audit. We have also implemented\n\npolicies, technical controls and training measures designed to safeguard customer data in AI operations.\n\nFor example, we have in place AI model-building controls, a company-wide policy that defines safeguards\n\nto limit customer data use, agreements with third-party AI providers prohibiting customer data from being\n\nused for model training and AI tool reviews before onboarding. We also adopted an AI ethics and\n\ngovernance policy, which establishes the ethical and legal framework for developing, deploying and using\n\nAI systems in our operations.\n\n**Business risk**\n\nWe define business risk as the risk to the delivery of Klarna’s business objectives, its long-term", "gold": ["adoption", "risk", "vendor"], "gold_note": "AI ops + customer-data risk controls + third-party AI providers."}, {"id": "p28", "company": "BARCLAYS BANK PLC", "year": 2026, "text": "We aim to be prudent managers of the firm's capital, and to drive consistent returns through client discipline, focused\n\nexecution, capital nimbleness and operational efficiency. We're also streamlining operations, reducing legacy systems, and\n\nleveraging AI to scale and innovate.\n\nWe continue to work collaboratively across the Investment Bank towards a core set of cross-business priorities to create\n\noutcomes that generate growth. We work as one division to deliver for our clients holistically, reviewing overall relationship", "gold": ["adoption"], "gold_note": "Leveraging AI to scale and innovate."}, {"id": "p29", "company": "Helios Towers PLC", "year": 2025, "text": "The Committee closely monitored advancements in power technology to ensure that the Company's energy solutions remained cutting-edge and sustainable. The potential impact on the Company of emerging trends and technological innovations were evaluated, ensuring that the business stayed ahead of industry developments.\n\nDiscussions included detail on the alignment of potential new products with the Company's strategic goals and customer requirements, with the aim of enhancing market competitiveness.\n\nBy focusing on these areas, the Technology Committee aims to support the Company's sustainability goals and drive technological innovation throughout 2025, including management of the Group's AI capabilities.\n\nI look forward to meeting shareholders and discussing the Committee's activities at the 2025 AGM.\n\n#### **Dana Tobak, CBE**", "gold": ["adoption"], "gold_note": "Committee manages 'the Group's AI capabilities' - operational claim."}, {"id": "p30", "company": "RC365 HOLDING PLC", "year": 2025, "text": "The Company’s strategy is to deliver innovative fintech solutions, including secure cross-border payment\n\nservices and IT software development, to meet the banking needs of the Asian community and beyond.\n\nRecent initiatives include securing exclusive rights to YouneeqAI’s AI-driven personalization platform in\n\nthe UK and a £4 million convertible loan note with Mill End Capital to support global expansion. For\n\nfurther details on the market, strategy, and principal risks, shareholders are referred to the Strategic Report", "gold": ["adoption", "vendor"], "gold_note": "Exclusive rights to YouneeqAI platform for own offering."}, {"id": "p31", "company": "HARMONY ENERGY INCOME TRUST PLC", "year": 2024, "text": "HARMONY ENERGY INCOME TRUST PLC ANNUAL REPORT 2023\n\n92\n\nAll of the Company’s operational BESS, including Little Raith (pictured), are operated through Autobidder, Tesla’s algorithmic trading platform.\n\n93\n\nHARMONY ENERGY INCOME TRUST PLC ANNUAL REPORT 2023", "gold": [], "gold_note": "'Algorithmic trading platform' is not AI-framed in the passage."}, {"id": "p32", "company": "TBC Bank Group PLC", "year": 2024, "text": "### PRUDENT RISK MANAGEMENT\nApply risk-adjusted proﬁtability approach in decision-making.# OUR STRATEGIC APPROACH CONTINUED\n\nEnsure the Group maintains a high degree of resilience.\n\nLARGE DATA HUB\nUtilise our advanced data analytics capabilities to maximise customer value via personalised offerings. Continue to develop AI and automation solutions to enhance business processes.\n\nOUTSTANDING TEAM\nAttract, develop and retain the best talent.\n\n## OPERATIONS IN GEORGIA", "gold": ["adoption"], "gold_note": "Continue to develop AI and automation solutions."}, {"id": "p33", "company": "Rolls-Royce Holdings PLC", "year": 2024, "text": "**DESCRIPTION**\n\nCONTROLS AND MITIGATING ACTIONS\n\nFailure to become a digitally enabled business using tools including AI could hinder our ability to enhance the customer experience, drive the transition to lower carbon, accelerate product design, improve manufacturing and empower our people with new tools to improve productivity, as well as preventing us from creating new growth opportunities.\n\n*   Investment in R&D opportunities\n*   We scan the horizon for emerging technology threats and opportunities\n\nASSURANCE ACTIVITIES AND PROVIDERS", "gold": ["risk"], "gold_note": "Failure-to-adopt-AI risk; adoption itself not asserted."}, {"id": "p34", "company": "SERAPHIM SPACE INVESTMENT TRUST PLC", "year": 2025, "text": "# glossary\n\nAdministrator or Company Secretary: Ocorian Administration (UK) Limited.\n\nAI: artificial intelligence.\n\nAIC: The Association of Investment Companies, the trade body for UK-listed closed-ended investment companies.\n\nAIC SORP: The Statement of Recommended Practice for the Financial Statements of Investment Trust Companies and Venture Capital Trusts, issued by the AIC as amended from time to time.", "gold": [], "gold_note": "Glossary definition only."}, {"id": "p35", "company": "Hammerson PLC", "year": 2025, "text": "![img-43.jpeg](img-43.jpeg)\nDemand for health and wellbeing\n\n## Description\n\nIncreasing use of AI and data analytics enables us to better understand our catchments and continually evolve and curate our destinations to meet our changing customer and brand needs, in order to maximise the value of our digital and physical assets.\n\n## How we responded\n\nWe are investing in AI analytics, in a first for UK destinations, to understand in more detail customer engagement at asset and store level to optimise the mix and maximise relevant commercialisation opportunities across leasing, marketing events, and use of media screens.\n\nThis will create a more relevant and joined-up experience for visitors whilst also creating more opportunities for brands to showcase in our high footfall locations. This technology will provide detailed audience data for our media estate allowing our media to be sold more effectively through programmatic channels.\n\n## Description", "gold": ["adoption"], "gold_note": "Investing in AI analytics, first for UK destinations."}, {"id": "p36", "company": "CMC Markets PLC", "year": 2025, "text": "## Operational risks\n\n### Risks arising from our people, processes, systems and external service providers\n\n**Emerging risks**\nWe monitor emerging regulatory developments and technological advancements, including the rise of artificial intelligence and broader digital disruption. These trends have the potential to reshape how financial services are delivered and consumed. As part of our strategy, we aim to adapt our platforms, processes and product offerings to remain compliant, competitive and aligned to evolving client expectations.\n\n### Financial crime\n\n**Key risk description**\nThe risk of money laundering, terrorist financing, sanctions violations, bribery, corruption and failures in Know Your Customer (“KYC”) procedures, which could lead to regulatory penalties, financial losses or reputational damage.", "gold": ["risk"], "gold_note": "Rise of AI under operational/emerging risks."}, {"id": "p37", "company": "Lloyds Banking Group PLC", "year": 2024, "text": "**Mitigation**\nThe Group continues to invest to reduce data risk exposure to within appetite. Examples include:\n\n*   Delivering a data strategy.\n*   Enhancing data quality and capability.\n*   Embedding data by design and ethics.\n\n**Monitoring**\nThe Group continues to monitor and respond to data-related regulatory initiatives, such as the new Digital Protection and Digital Information Bill expected in 2024, and other legal regimes, for example, the European Commission’s Artificial Intelligence Act. Data risk is governed through Group and sub-group committees. Significant issues are escalated to Group Risk Committee, in accordance with the Group’s enterprise risk management framework, and RCSA frameworks. A number of activities support the close monitoring of data risk including:\n\n*   Design and monitoring of data risk appetite metrics, including key risk and performance indicators.\n*   Monitoring of significant data-related issues, complaints, events and breaches in accordance with Group Operational Risk and Data policies.\n*   Identification and mitigation of data risk when planning and implementing transformation or business change.\n\n### Funding and liquidity risk", "gold": ["risk"], "gold_note": "EU AI Act monitored as regulatory exposure within data risk."}, {"id": "p38", "company": "Currys PLC", "year": 2025, "text": "We are working with Neighbourly, a social platform that helps charities and community groups connect with companies who are looking to make a positive impact. By arranging volunteering activities through Neighbourly, we're able to keep track of the impact we're having as a business.\n\nOne of the volunteering opportunities centres around delivering Ai123 training, developed by Neighbourly in association with Microsoft. Neighbourly research\n\nfound that over 64% of small charity organisations said they were struggling to integrate AI due to limited understanding on where to start, resources and support. This campaign helps upskill our own colleagues to then enable them to deliver basic AI skills training to small good causes.\n\nIn the first four months of our pilot 35 colleagues have undertaken some form of digital skills volunteering.\n\n### Partnerships for Impact", "gold": [], "gold_note": "CSR training about AI skills; no AI deployed, no capability dependency."}, {"id": "p39", "company": "Serco Group PLC", "year": 2026, "text": "$\\sim 3,400$\n\nadditional colleagues retained (annualised)\n\nOur global recruitment teams have taken a decisive step forward, transforming how Serco attracts, recruits and retains the best talent in increasingly competitive labour markets through the accelerated global implementation of Phenom, a market-leading, AI-driven talent intelligence platform. Use of Phenom has supported recruitment's role as a strategic, data-led capability, delivering a consistent, high-quality experience for candidates and hiring leaders across the Group.\n\nAI-enabled sourcing, screening and engagement capabilities are introducing automation at scale, supporting faster, more informed hiring decisions, reducing reliance on agency recruitment and improving early-tenure retention in critical roles. We have simplified our technology landscape, strengthened data quality and created a foundation for more sophisticated workforce planning.\n\nSerco Group plc\n\nAnnual Report and Accounts 2025", "gold": ["adoption", "vendor"], "gold_note": "Phenom (3rd-party AI platform) implemented at scale."}, {"id": "p40", "company": "Discoverie Group PLC", "year": 2024, "text": "The composition of the Board was positively rated.\n\n#### Board’s expertise\n\nThe Board’s understanding of the views of major investors and other stakeholders was rated positively but, given recent technological advances, Board members would benefit from more training in areas such as artificial intelligence (AI).\n\n## Re-election\n\nIn accordance with the Code, all Directors stand for re-election annually at each AGM.", "gold": [], "gold_note": "Board would benefit from AI training; no use, no risk tie."}, {"id": "p41", "company": "HSBC Holdings PLC", "year": 2026, "text": "on payment transparency and wider payment infrastructure.\n\n– We conduct risk assessments and have governance in place (for\n\nexample on AI and digital assets and currencies) to help enable\n\nGroup-wide cross-risk focus on areas of emerging technology.\n\n– We seek to be transparent as to how we are engaging with new\n\ntechnology innovation, for example publishing HSBC’s Principles for\n\nthe Ethical Use of Data and AI.\n\n– We continue to make improvements to our related policies and to\n\nour control framework to enhance the end-to-end management of", "gold": ["risk"], "gold_note": "AI governance/risk assessments; use only presupposed by policy title."}, {"id": "p42", "company": "SERAPHIM SPACE INVESTMENT TRUST PLC", "year": 2024, "text": "Signed commercial agreements with both AT&T and Verizon to provide the company's first space-based broadband network direct to cell phones of their subscribers\n\n# **Spire Global:**  Announced collaboration\n\nwith Nvidia to further advance the company's AI-driven weather prediction capabilities\n\n#### **IPOs, M&A, Exits**\n\n#### **Astroscale:**", "gold": [], "gold_note": "Portfolio company's Nvidia collaboration."}, {"id": "p43", "company": "Direct Line Insurance Group PLC", "year": 2022, "text": "£581.8m Operating profit\n\n#### Claims expertise\n\nOur vertically integrated claims model differentiates us and adds value giving the business a competitive advantage. We are fully focused on data, artificial intelligence (“AI”) and digital as these are the key capabilities needed to get results. As we further digitalise our claims journey we are aiming for increased simplicity and speed to give our customers peace of mind when they make an insurance claim and need us most.\n\n#### Efficient cost base\n\nThe implementation of our transformation programme is already reducing our cost to serve customers, while at the same time improving customer outcomes. As the business increasingly utilises the new technology we are becoming more efficient, pricing with greater speed and responding to changing market dynamics with greater agility.", "gold": ["adoption"], "gold_note": "AI a key claims capability in own transformation."}, {"id": "p44", "company": "EMV CAPITAL PLC", "year": 2025, "text": "Sofant achieved a major technical breakthrough in its RF MEMS technology, achieving world-class cycle reliability. The company's receive antenna was successfully tested on a Viasat satellite in Edinburgh on two separate occasions, marking a key technical milestone. The final version of the MEMS device has started production at Silex, with devices due to be assembled into the satellite terminals by Q4 2025.\n\nPost-balance sheet date developments:\n\nSofant has experienced significant growth in market interest, particularly in the aero market, including defence, , commercial, business jet and autonomous vehicle markets. The company anticipates launch of commercial sales in 2026. These developments underscore Sofant's continued progress and strategic positioning in the satellite and terrestrial communications market.\n\n**[ProAxsis Ltd (\"ProAxsis\")](https://proaxsis.com/)** [](https://proaxsis.com/)**[\\- Subsidiary](https://proaxsis.com/)**\n\n·      Location: Belfast, UK;", "gold": [], "gold_note": "No AI framing in passage."}, {"id": "p45", "company": "MARTIN CURRIE GLB PORTFOLIO TST PLC", "year": 2022, "text": "#### Information Technology, United States\n\nMicrosoft, known for its Windows operating system, the Xbox gaming console and cloud computing service Azure, is in a prime position to benefit from a new 'golden era' of investment in technology. IT investment is becoming crucial for every aspect of corporate life – infrastructure, marketing, sales and commerce – and Microsoft stands to capture a significant share of this double-digitgrowing expenditure. Furthermore, a progressive move towards a subscription-based model is improving the company's pricing power and its competitive position in the market.\n\nMicrosoft's Environmental, Social and Governance strengths, in our view, are strong management and a relatively diverse board. We note Microsoft's positive contribution to tackling climate change and social issues with such initiatives as 'AI for Earth' and various educational programmes.\n\n![](_page_23_Picture_8.jpeg)\n\n### Taiwan Semiconductor Manufacturing ('TSMC')", "gold": [], "gold_note": "Describes Microsoft as a holding, not own use."}, {"id": "p46", "company": "Dr. Martens PLC", "year": 2024, "text": "Withdrawal of the Companies (Strategic Report and Directors' Report) (Amendment) Regulations 2023 announced.\n\n### November 2023\n\n- **Noted** FY24 half year accounts (including accounting judgements and going concern) and Half Year Results announcement.\n- **Reviewed** the report on the half year audit review from PwC.\n- **Reviewed** an Internal Audit update.\n- **Noted** the withdrawal of the UK Government's new reporting regulations and considered the implications on the Company.\n- **Approved** global AI and data retention policies at the recommendation of the Operating Committee.\n\n### January 2024\n\n- **Reviewed** an update from the Tax team, including tax strategy and horizon scanning.\n- **Approved** the FY24 tax strategy statement.\n- **Reviewed** and approved the FY24 external audit plan.\n- **Reviewed** an Internal Audit update, including risks and risk management.\n- **Reviewed** an update on data security maturity.\n- **Reviewed** the Committee's terms of reference.\n- **Reviewed** the Non-Audit Services Policy.\n- **Approved** the Group-wide Conflicts of Interest Policy.\n- **Approved** the forward agenda planner for FY25.", "gold": [], "gold_note": "Approved AI policy = governance artifact, no use or risk tie."}, {"id": "p47", "company": "RICARDO PLC", "year": 2023, "text": "OPERATING SEGMENT REVIEW CONTINUED\n\n## EMERGING AUTOMOTIVE AND INDUSTRIAL\n\nEmerging Automotive and Industrial is a trusted partner for the next generation of sustainable mobility. Leveraging expertise in power electronic systems and propulsion systems, software and digital technologies for connected, autonomous vehicles, we deliver clean, efficient and integrated propulsion and energy solutions to support our clients in their energy transitions. Specialists in energy transition propulsion, driveline, and controls design, optimisation, and prototype development.\n\n### HIGHLIGHTS*\n\n|                               | 2022/23     | 2021/22 (CC) | 2021/22     |\n| :---------------------------- | :---------- | :----------- | :---------- |\n| **-19% Order intake**         | £84.3m      | £104.6m      | £101.3m     |\n| **+3% Order book**            | £55.0m      | £53.3m       | £55.4m      |\n| **+16% Revenue**              | £82.3m      | £71.1m       | £69.1m      |\n| **+279% Underlying operating profit** | £10.6m      | £2.8m        | £2.7m       |\n| **+9.0pp Underlying operating profit margin** | 12.9%       | 3.9%         | 3.9%        |\n| **-20% Headcount**            | 435         | 542          |             |", "gold": [], "gold_note": "Autonomous-vehicle tech not framed as AI in passage."}, {"id": "p48", "company": "GEAR4MUSIC (HOLDINGS) PLC", "year": 2025, "text": "| | | | | | --- | --- | --- | --- | | | FY25 | FY24 | Change on FY24 | | Website users | 24.9m | 23.7m | +5% | | Conversion rate | 4.04% | 3.93% | +11bps | | Average order value | £147 | £153 | \\-4% | | Active customers | 846,000 | 799,000 | +6% | | Products listed | 63,300 | 63,000 | \\- | Business review I am pleased to report a resilient performance in FY25, having delivered financial and strategic progress despite ongoing macroeconomic pressures and a subdued consumer spending environment, a temporary setback in H1 due to issues with an outsourced AI-based marketing system that has since been resolved, and aggressive discounting from underperforming competitors prior to their market exit. These achievements are underpinned by the exceptional commitment and contribution of our entire team, to whom I extend my sincere appreciation. In the face of these challenges, the Group achieved year-on-year revenue growth, maintained gross margin stability, and upheld rigorous cost discipline. These efforts contributed to an increase in reported EBITDA and a £1.0 million year-on-year improvement in Profit Before Tax. Additionally, we recorded a further reduction in net bank debt, resulting in a leverage ratio of 0.6x FY25 EBITDA (FY24: 0.8x), marking a further strengthening of the Group's financial position. Combined with the extension of our £30 million Revolving Credit Facility, the Group possesses the financial stability and flexibility to accelerate growth initiatives while continuing to [...]", "gold": ["adoption", "harm", "vendor"], "gold_note": "Realized setback from outsourced AI marketing system."}, {"id": "p49", "company": "GEAR4MUSIC (HOLDINGS) PLC", "year": 2025, "text": "| | | | | | --- | --- | --- | --- | | | FY25 | FY24 | Change on FY24 | | | £m | £m | % | | Other-brand product revenue | 104.7 | 100.4 | +4% | | Own-brand product revenue | 35.7 | 37.6 | \\-5% | | Carriage income | 5.7 | 5.8 | \\-1% | | Other | 0.6 | 0.6 | \\- | | Revenue | 146.7 | 144.4 | +2% | Other brand revenue of £104.7m was £4.3m ahead of last year (4%) reversing a £5.8m (5%) decrease in FY24, reflecting opportunities for particular brands in certain territories. Own-brand revenue of £35.7m was £1.9m (5%) down on FY24, impacted by a slow start to the year as teething problems with an outsourced AI-based marketing system led to an under-allocation of spend on higher margin categories including own-brand. Nevertheless own-brand still accounted for 24.3% of total revenue (FY24: 26.0%) from 8.8% (FY24: 8.5%) of SKUs. It is our ambition to grow our own-brand business and to support this we have further invested in our own-brand team. Carriage income totalled £5.7m representing a small decrease of £0.1m (1%) compared to the prior year. This equated to 3.9% of total sales, down slightly from 4.0% in the previous year, reflecting a lower level of cost recharging in a highly competitive market environment. Other revenue comprises paid for extended warranty income, and commissions earned on facilitating point-of-sale credit for retail customers. The proportion [...]", "gold": ["adoption", "harm", "vendor"], "gold_note": "Same incident: revenue impact from outsourced AI system."}, {"id": "p50", "company": "TRIFAST PLC", "year": 2025, "text": "### Cybersecurity Strengthening resilience in a complex and evolving threat landscape Cybersecurity is a foundational pillar of our resilience, digital assurance and operational continuity. Over the past year, we have accelerated our efforts to address a rapidly evolving cyber threat landscape, driven by increasingly sophisticated tactics, including the emergence of AI-powered attack methods and more persistent, targeted threats. This environment challenges all organisations to respond in real time and reinforces the importance of continuous vigilance, rapid detection and response readiness. We are actively investing in the upskilling of our workforce through role-specific training, simulated threat exercises and enhanced awareness campaigns to build a strong, security-conscious culture across the organisation. Recognising the increasing complexity of our global operations and legacy infrastructure, we have launched a series of strategic initiatives aimed at enhancing standardisation, visibility and control across our global technology estate. These programmes are delivering near-term risk reduction and supporting our long-term ambition to operate within a more secure and well-governed digital framework. Key initiatives include the adoption of zero trust security principles, reinforcement of cloud and endpoint defences and the implementation of centralised threat detection and response capabilities. Cybersecurity governance has been embedded into our enterprise risk management framework, with regular oversight and reporting at Executive and Board levels. As we continue to mature our capabilities, we remain committed to ensuring our platforms, people and processes evolve in step with the changing threat landscape, enabling secure growth and sustainable innovation with a strong foundation of digital assurance. ### Internal control [...]", "gold": ["risk"], "gold_note": "AI-powered attack methods in threat landscape; no realized incident."}], "models": {"anthropic:claude-haiku-4-5": {"preds": [["adoption"], ["adoption"], ["risk"], [], ["risk"], ["adoption"], ["adoption", "risk"], ["adoption"], ["adoption", "vendor"], ["risk"], [], ["adoption"], ["risk", "vendor"], ["adoption", "vendor"], ["risk"], [], ["adoption", "vendor"], [], ["adoption", "vendor"], ["risk"], ["adoption"], ["risk"], ["adoption"], ["adoption"], ["adoption"], [], ["adoption", "risk", "vendor"], ["adoption"], [], ["adoption", "vendor"], ["adoption", "vendor"], ["adoption"], ["risk"], [], ["adoption"], ["risk"], ["risk"], ["adoption", "vendor"], ["adoption"], [], [], ["adoption", "vendor"], ["adoption"], [], [], ["adoption"], ["adoption"], ["harm", "vendor"], ["adoption", "harm"], ["risk"]]}, "anthropic:claude-sonnet-5": {"preds": [["adoption"], ["adoption"], ["risk"], [], ["risk"], [], ["adoption", "risk"], [], ["adoption", "vendor"], ["risk"], [], ["adoption"], ["risk"], ["adoption"], ["risk"], [], ["adoption"], ["risk"], ["adoption", "vendor"], ["risk"], ["adoption"], ["adoption", "risk"], ["adoption"], ["adoption"], ["adoption"], [], ["adoption", "vendor"], ["adoption"], ["adoption"], ["adoption", "vendor"], ["adoption", "vendor"], ["adoption"], ["risk"], [], ["adoption"], ["risk"], ["risk"], ["adoption"], ["adoption", "vendor"], [], ["adoption", "risk"], ["adoption", "vendor"], ["adoption"], [], ["adoption"], ["adoption"], [], ["adoption", "harm", "vendor"], ["adoption", "harm", "vendor"], ["risk"]]}, "openai:gpt-5-nano": {"preds": [["adoption"], ["adoption"], ["risk"], [], ["risk"], [], ["adoption", "risk"], [], ["adoption", "vendor"], ["risk"], [], ["adoption"], ["risk"], ["adoption", "vendor"], [], [], ["adoption"], [], ["adoption", "vendor"], ["risk"], ["adoption"], ["adoption", "risk"], ["adoption"], ["adoption"], ["adoption"], [], ["adoption", "vendor"], ["adoption"], ["adoption"], ["adoption", "vendor"], ["adoption", "vendor"], ["adoption"], ["risk"], [], ["adoption"], ["risk"], ["risk"], ["adoption"], ["adoption", "vendor"], [], [], ["adoption", "vendor"], ["adoption"], [], ["adoption"], ["adoption"], [], ["adoption", "harm", "vendor"], ["adoption", "harm", "vendor"], ["risk"]]}, "openai:gpt-5-mini": {"preds": [["adoption"], ["adoption"], ["risk"], [], ["risk"], ["adoption"], ["adoption", "risk"], [], ["adoption", "vendor"], ["risk"], [], ["adoption"], ["risk"], ["adoption", "vendor"], ["risk"], [], ["adoption"], ["risk"], ["adoption", "vendor"], ["risk"], ["adoption"], ["adoption", "risk"], ["adoption"], ["adoption"], ["adoption"], [], ["adoption", "vendor"], ["adoption"], ["adoption"], ["adoption", "vendor"], ["adoption", "vendor"], ["adoption"], ["risk"], [], ["adoption"], ["risk"], ["risk"], ["adoption"], ["adoption", "vendor"], [], ["risk"], ["adoption", "vendor"], ["adoption"], [], ["adoption"], ["adoption"], [], ["adoption", "harm", "vendor"], ["adoption", "harm", "vendor"], ["risk"]]}, "openai:gpt-5": {"preds": [["adoption"], ["adoption"], ["risk"], [], ["risk"], [], ["risk"], [], ["adoption", "vendor"], ["risk"], [], ["adoption"], ["risk"], ["adoption"], ["risk"], [], ["adoption"], [], ["vendor"], ["risk"], ["adoption"], ["risk"], ["adoption"], ["adoption"], ["adoption"], [], ["adoption", "risk", "vendor"], ["adoption"], ["adoption"], ["vendor"], ["adoption", "vendor"], ["adoption"], ["risk"], [], ["adoption"], ["risk"], ["risk"], [], ["adoption", "vendor"], [], ["risk"], ["adoption", "vendor"], [], [], [], [], [], ["adoption", "harm", "vendor"], ["adoption", "harm", "vendor"], ["risk"]]}, "anthropic:claude-opus-5": {"preds": [["adoption"], ["adoption"], ["risk"], [], ["risk"], [], ["adoption", "risk"], [], ["adoption"], ["risk"], [], ["adoption"], ["risk"], ["adoption"], ["risk"], [], ["adoption"], ["risk"], ["adoption", "vendor"], ["risk"], ["adoption"], ["risk"], ["adoption"], ["adoption"], ["adoption"], [], ["adoption", "vendor"], ["adoption"], ["adoption"], ["adoption", "vendor"], ["adoption", "vendor"], ["adoption"], ["risk"], [], ["adoption"], ["risk"], ["risk"], [], ["adoption", "vendor"], [], ["adoption", "risk"], [], ["adoption"], [], [], [], [], ["adoption", "harm", "vendor"], ["adoption", "harm", "vendor"], ["risk"]]}}};
+const LABELS = ["adoption", "risk", "vendor", "harm"];
+const LCOLOR = { adoption: "var(--c-adoption)", risk: "var(--c-risk)", vendor: "var(--c-vendor)", harm: "var(--c-harm)" };
+const B = 2000;
+
+// ---------- metrics ----------
+function prf(golds, preds, beta) {
+  const b2 = beta * beta;
+  let TP = 0, FP = 0, FN = 0;
+  const per = {};
+  for (const lab of LABELS) {
+    let tp = 0, fp = 0, fn = 0;
+    for (let i = 0; i < golds.length; i++) {
+      const g = golds[i].includes(lab), p = preds[i].includes(lab);
+      if (g && p) tp++; else if (!g && p) fp++; else if (g && !p) fn++;
+    }
+    TP += tp; FP += fp; FN += fn;
+    const prec = tp + fp ? tp / (tp + fp) : 1, rec = tp + fn ? tp / (tp + fn) : 1;
+    const f = prec + rec ? (1 + b2) * prec * rec / (b2 * prec + rec) : 0;
+    per[lab] = { p: prec, r: rec, f, tp, fp, fn, support: tp + fn };
+  }
+  const mp = TP + FP ? TP / (TP + FP) : 1, mr = TP + FN ? TP / (TP + FN) : 1;
+  const micro = mp + mr ? (1 + b2) * mp * mr / (b2 * mp + mr) : 0;
+  // macro averages only over classes with gold positives here -- mirrors prf()
+  // in judge_eval.py. Scoring an absent class the vacuous 1.0 hands out free
+  // points; `harm` has 2 gold passages in 50, so 13% of bootstrap resamples
+  // contain none and would otherwise pin 25% of macro to a constant.
+  const sup = LABELS.filter(l => per[l].support);
+  const macro = sup.length ? sup.reduce((s, l) => s + per[l].f, 0) / sup.length : micro;
+  return { per, micro, macro, mp, mr };
+}
+function mulberry32(a) {
+  return function () {
+    a |= 0; a = (a + 0x6D2B79F5) | 0;
+    let t = Math.imul(a ^ (a >>> 15), 1 | a);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+// Resamples whole CLUSTERS (companies), not passages -- mirrors paired_bootstrap
+// in judge_eval.py. Passages from one filer are not independent draws: risk
+// boilerplate is copied forward and judge errors repeat across a document, so
+// resampling passages understates the spread of a fresh sample. The unit also
+// fixes the estimand: drawing companies asks "how would this judge do on filers
+// I have not seen?", which is the question a prevalence observatory is asking.
+function pairedBootstrap(golds, pa, pb, beta, agg, groups) {
+  const rng = mulberry32(42), deltas = new Array(B);
+  const G = groups && groups.length ? groups : golds.map((_, i) => [i]);
+  for (let b = 0; b < B; b++) {
+    const g = [], a = [], c = [];
+    for (let k = 0; k < G.length; k++) {
+      for (const j of G[Math.floor(rng() * G.length)]) {
+        g.push(golds[j]); a.push(pa[j]); c.push(pb[j]);
+      }
+    }
+    deltas[b] = prf(g, a, beta)[agg] - prf(g, c, beta)[agg];
+  }
+  deltas.sort((x, y) => x - y);
+  return { lo: deltas[Math.floor(0.025 * B)], hi: deltas[Math.floor(0.975 * B)],
+           p: deltas.filter(d => d <= 0).length / B };
+}
+
+// ---------- state ----------
+let beta = 1.0, agg = "macro", filter = "all";
+const passages = DATA.passages;
+const golds = passages.map(p => p.gold);
+// bootstrap resampling unit: passage indices grouped by filer
+const CLUSTERS = (() => {
+  const by = new Map();
+  passages.forEach((p, i) => {
+    const k = p.company;
+    if (!by.has(k)) by.set(k, []);
+    by.get(k).push(i);
+  });
+  return [...by.values()];
+})();
+const models = Object.keys(DATA.models || {});
+const shortName = m => m.split(":")[1] || m;
+const provider = m => m.split(":")[0];
+
+function chipHTML(lab) {
+  return `<span class="chip"><span class="dot" style="background:${LCOLOR[lab]}"></span>${lab}</span>`;
+}
+function chipsHTML(labs) {
+  return labs.length ? labs.map(chipHTML).join(" ") : `<span class="chip none">no label</span>`;
+}
+function fmt(x, d = 3) { return x.toFixed(d); }
+
+// ---------- results ----------
+function renderResults() {
+  const el = document.getElementById("results-body");
+  if (!models.length) {
+    el.innerHTML = `<div class="notice"><strong>Model runs pending.</strong> The ground truth, metric, and inference machinery on this page are live; the judge bench itself runs next (Anthropic + OpenAI models over the same 50 passages) and this section will fill in with the ranking, per-class scores, and bootstrap intervals.</div>`;
+    return;
+  }
+  el.innerHTML = `
+  <div class="controls">
+    <div class="control">
+      <label for="beta">β — cost of a miss vs a false alarm</label>
+      <input type="range" id="beta" min="-2" max="2" step="0.05" value="${Math.log2(beta)}">
+      <div class="beta-readout">β = <span id="betaval">${fmt(beta, 2)}</span> — <span id="betamode">balanced (F1)</span></div>
+    </div>
+    <div class="control">
+      <label id="agglabel">Averaging</label>
+      <div class="seg" role="group" aria-labelledby="agglabel">
+        <button id="agg-macro" aria-pressed="${agg === "macro"}">macro</button>
+        <button id="agg-micro" aria-pressed="${agg === "micro"}">micro</button>
+      </div>
+    </div>
+  </div>
+  <div id="bench" aria-live="polite"></div>`;
+
+  let timer = null;
+  document.getElementById("beta").addEventListener("input", e => {
+    beta = Math.pow(2, parseFloat(e.target.value));
+    document.getElementById("betaval").textContent = fmt(beta, 2);
+    document.getElementById("betamode").textContent =
+      beta < 0.9 ? "precision-leaning (strict auditor)" : beta > 1.1 ? "recall-leaning (screening judge)" : "balanced (F1)";
+    clearTimeout(timer); timer = setTimeout(renderBench, 120);
+  });
+  const setAgg = a => {
+    agg = a;
+    document.getElementById("agg-macro").setAttribute("aria-pressed", a === "macro");
+    document.getElementById("agg-micro").setAttribute("aria-pressed", a === "micro");
+    renderBench();
+  };
+  document.getElementById("agg-macro").addEventListener("click", () => setAgg("macro"));
+  document.getElementById("agg-micro").addEventListener("click", () => setAgg("micro"));
+  renderBench();
+}
+
+function renderBench() {
+  const el = document.getElementById("bench");
+  const stats = {}, ranked = [...models];
+  for (const m of models) stats[m] = prf(golds, DATA.models[m].preds, beta);
+  ranked.sort((a, b) => stats[b][agg] - stats[a][agg]);
+  const top = ranked[0];
+
+  let html = `<div class="barchart" role="img" aria-label="F-beta by model">`;
+
+  const maxF = Math.max(...ranked.map(m => stats[m][agg]), 0.001);
+  for (const m of ranked) {
+    const f = stats[m][agg];
+    html += `<div class="barrow${m === top ? " top" : ""}">
+      <span class="blabel">${shortName(m)}</span>
+      <span class="bartrack"><span class="barfill" style="width:${(f / maxF * 100).toFixed(1)}%"></span></span>
+      <span class="barval">${fmt(f)}</span></div>`;
+  }
+  html += `</div>
+  <div class="tablewrap"><table>
+    <thead><tr><th>#</th><th>Judge</th><th class="num">micro P</th><th class="num">micro R</th>
+    <th class="num">micro F<sub>β</sub></th><th class="num">macro F<sub>β</sub></th>
+    ${LABELS.map(l => `<th class="num">F ${l}</th>`).join("")}
+    <th class="num">Δ vs #1 [95% CI]</th><th class="num">p(Δ≤0)</th></tr></thead><tbody>`;
+
+  ranked.forEach((m, i) => {
+    const s = stats[m];
+    let ci = "—", pv = "—";
+    if (m !== top) {
+      const bs = pairedBootstrap(golds, DATA.models[top].preds, DATA.models[m].preds, beta, agg, CLUSTERS);
+      const d = s[agg] - stats[top][agg];
+      ci = `${fmt(d)} [${fmt(-bs.hi)}, ${fmt(-bs.lo)}]`;
+      pv = bs.p < 0.0005 ? "&lt;0.001" : fmt(bs.p, 3);
+    }
+    html += `<tr${m === top ? ' class="top"' : ""}>
+      <td class="num">${i + 1}</td>
+      <td><span class="modelname">${shortName(m)}</span><span class="provider">${provider(m)}</span></td>
+      <td class="num">${fmt(s.mp)}</td><td class="num">${fmt(s.mr)}</td>
+      <td class="num">${fmt(s.micro)}</td><td class="num">${fmt(s.macro)}</td>
+      ${LABELS.map(l => `<td class="num">${fmt(s.per[l].f)}</td>`).join("")}
+      <td class="num">${ci}</td><td class="num">${pv}</td></tr>`;
+  });
+  html += `</tbody></table></div>
+  <p class="ci-note">Δ is this judge minus the current #1 at the chosen β and averaging; negative means behind. CI from B=${B} paired resamples, seed 42. p is one-sided: the fraction of resamples in which this judge ties or beats #1.</p>
+  <p class="small" id="beta-story"></p>`;
+
+  el.innerHTML = html;
+
+  // does the ranking change across beta? tell the story explicitly.
+  const rankAt = b => [...models].sort((x, y) => prf(golds, DATA.models[y].preds, b)[agg] - prf(golds, DATA.models[x].preds, b)[agg])[0];
+  const strictTop = rankAt(0.25), lenientTop = rankAt(4);
+  document.getElementById("beta-story").innerHTML =
+    strictTop === lenientTop
+      ? `Across the whole dial (β from 0.25 to 4), <strong>${shortName(strictTop)}</strong> stays on top under ${agg} averaging — on this sample the ranking is not an artifact of the FP/FN exchange rate.`
+      : `Drag the dial: at β = 0.25 (precision-first) the ${agg} winner is <strong>${shortName(strictTop)}</strong>; at β = 4 (recall-first) it is <strong>${shortName(lenientTop)}</strong>. "Which judge is better" literally has a different answer depending on the error-cost weighting — the central claim of this page, visible in one slider.`;
+}
+// ---------- passage browser ----------
+function renderFilters() {
+  const el = document.getElementById("filters");
+  const defs = [["all", "all 50"], ["disagree", "judge ≠ gold"], ["nolabel", "no label"],
+                ...LABELS.map(l => [l, l])];
+  el.innerHTML = defs.map(([k, txt]) =>
+    `<button data-f="${k}" aria-pressed="${filter === k}">${txt}</button>`).join("");
+  el.querySelectorAll("button").forEach(b =>
+    b.addEventListener("click", () => { filter = b.dataset.f; renderFilters(); renderPassages(); }));
+}
+function renderPassages() {
+  const el = document.getElementById("passages");
+  const rows = passages.filter(p => {
+    if (filter === "all") return true;
+    if (filter === "nolabel") return p.gold.length === 0;
+    if (filter === "disagree")
+      return models.some(m => {
+        const pr = DATA.models[m].preds[passages.indexOf(p)];
+        return JSON.stringify([...pr].sort()) !== JSON.stringify([...p.gold].sort());
+      });
+    return p.gold.includes(filter);
+  });
+  el.innerHTML = rows.map(p => {
+    const i = passages.indexOf(p);
+    const modelRows = models.map(m => {
+      const pr = DATA.models[m].preds[i];
+      const ok = JSON.stringify([...pr].sort()) === JSON.stringify([...p.gold].sort());
+      return `<div class="predrow"><span class="who">${shortName(m)}</span>${chipsHTML(pr)}
+        <span class="verdict ${ok ? "ok" : "miss"}">${ok ? "= gold" : "≠ gold"}</span></div>`;
+    }).join("");
+    return `<details class="passage">
+      <summary><span class="pid">${p.id}</span><span class="pcompany">${p.company} · ${p.year}</span>
+        <span>${chipsHTML(p.gold)}</span></summary>
+      <div class="pbody">
+        <blockquote>${p.text.replace(/&/g, "&amp;").replace(/</g, "&lt;")}</blockquote>
+        <div class="predrow"><span class="who">gold (rubric)</span>${chipsHTML(p.gold)}</div>
+        <p class="gnote">${p.gold_note || ""}</p>
+        ${modelRows}
+      </div></details>`;
+  }).join("") || `<p class="small">No passages match this filter.</p>`;
+}
+
+renderResults();
+renderFilters();
+renderPassages();
+</script>

@@ -1,0 +1,538 @@
+<title>Who Grades the Graders?</title>
+<style>
+  :root {
+    --paper: #fbfbf9;
+    --paper-2: #f3f3ef;
+    --ink: #16150f;
+    --ink-2: #52514e;
+    --ink-3: #8a8880;
+    --rule: #dddcd4;
+    --accent: #2a78d6;
+    --accent-ink: #1c5cab;
+    --accent-wash: #eaf2fc;
+    --c-adoption: #2a78d6;
+    --c-risk: #eb6834;
+    --c-vendor: #1baf7a;
+    --c-harm: #e34948;
+    --good: #008300;
+    --bad: #e34948;
+    --bar: #86b6ef;
+    --bar-top: #256abf;
+    --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Times New Roman", serif;
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #191915;
+      --paper-2: #222219;
+      --ink: #ecebe3;
+      --ink-2: #c3c2b7;
+      --ink-3: #8a8880;
+      --rule: #3a3a33;
+      --accent: #3987e5;
+      --accent-ink: #86b6ef;
+      --accent-wash: #1d2a3d;
+      --c-adoption: #3987e5;
+      --c-risk: #d95926;
+      --c-vendor: #199e70;
+      --c-harm: #e66767;
+      --good: #4caf50;
+      --bad: #e66767;
+      --bar: #1c5cab;
+      --bar-top: #5598e7;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #191915;
+    --paper-2: #222219;
+    --ink: #ecebe3;
+    --ink-2: #c3c2b7;
+    --ink-3: #8a8880;
+    --rule: #3a3a33;
+    --accent: #3987e5;
+    --accent-ink: #86b6ef;
+    --accent-wash: #1d2a3d;
+    --c-adoption: #3987e5;
+    --c-risk: #d95926;
+    --c-vendor: #199e70;
+    --c-harm: #e66767;
+    --good: #4caf50;
+    --bad: #e66767;
+    --bar: #1c5cab;
+    --bar-top: #5598e7;
+  }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.55;
+    margin: 0;
+  }
+  .wrap { max-width: 860px; margin: 0 auto; padding: 0 20px 96px; }
+
+  header.masthead { padding: 64px 0 28px; border-bottom: 3px double var(--rule); }
+  .eyebrow {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--ink-3); margin: 0 0 14px;
+  }
+  h1 {
+    font-family: var(--serif); font-weight: 600; font-size: clamp(34px, 6vw, 54px);
+    line-height: 1.06; margin: 0 0 18px; text-wrap: balance; letter-spacing: -0.01em;
+  }
+  .standfirst { font-family: var(--serif); font-size: 19px; color: var(--ink-2); max-width: 46em; margin: 0; }
+  .standfirst em { color: var(--ink); }
+
+  section { margin-top: 56px; }
+  .item-label {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--accent-ink); margin: 0 0 6px;
+  }
+  h2 {
+    font-family: var(--serif); font-weight: 600; font-size: 27px;
+    margin: 0 0 14px; text-wrap: balance;
+  }
+  h3 { font-family: var(--serif); font-weight: 600; font-size: 19px; margin: 22px 0 8px; }
+  p { max-width: 44em; margin: 0 0 14px; }
+  p.small, .small { font-size: 13.5px; color: var(--ink-2); }
+  code, .mono { font-family: var(--mono); font-size: 0.92em; }
+  .formula {
+    font-family: var(--mono); font-size: 14px; background: var(--paper-2);
+    border: 1px solid var(--rule); border-radius: 6px; padding: 12px 16px;
+    overflow-x: auto; margin: 14px 0; white-space: nowrap;
+  }
+  a { color: var(--accent-ink); }
+
+  .notice {
+    border: 1px solid var(--rule); border-left: 4px solid var(--accent);
+    background: var(--paper-2); border-radius: 6px; padding: 14px 18px;
+    font-size: 14.5px; margin: 18px 0; max-width: 46em;
+  }
+
+  /* label definition cards */
+  .labels-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; margin: 20px 0; }
+  .label-card { border: 1px solid var(--rule); border-radius: 8px; padding: 16px 18px; background: var(--paper-2); }
+  .label-card h4 { display: flex; align-items: center; gap: 8px; margin: 0 0 8px; font-family: var(--mono); font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; }
+  .label-card p { font-size: 13.5px; color: var(--ink-2); margin: 0 0 6px; }
+  .label-card p strong { color: var(--ink); }
+  .dot { width: 10px; height: 10px; border-radius: 50%; flex: none; }
+
+  /* chips */
+  .chip {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.03em;
+    border: 1px solid var(--rule); background: var(--paper);
+    border-radius: 999px; padding: 2px 9px 2px 6px; color: var(--ink-2);
+  }
+  .chip .dot { width: 8px; height: 8px; }
+  .chip.none { color: var(--ink-3); font-style: italic; }
+
+  /* controls */
+  .controls {
+    display: flex; flex-wrap: wrap; gap: 18px 28px; align-items: flex-end;
+    border: 1px solid var(--rule); border-radius: 8px; background: var(--paper-2);
+    padding: 16px 20px; margin: 22px 0;
+  }
+  .control label { display: block; font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 7px; }
+  .control input[type=range] { width: 220px; accent-color: var(--accent); }
+  .beta-readout { font-family: var(--mono); font-size: 13px; color: var(--ink); }
+  .seg { display: inline-flex; border: 1px solid var(--rule); border-radius: 6px; overflow: hidden; }
+  .seg button {
+    font-family: var(--mono); font-size: 12.5px; padding: 6px 14px; border: none;
+    background: var(--paper); color: var(--ink-2); cursor: pointer;
+  }
+  .seg button + button { border-left: 1px solid var(--rule); }
+  .seg button[aria-pressed="true"] { background: var(--accent); color: #fff; }
+  .seg button:focus-visible, .controls input:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  /* ranking table */
+  .tablewrap { overflow-x: auto; margin: 18px 0; }
+  table { border-collapse: collapse; width: 100%; font-size: 14px; }
+  th { font-family: var(--mono); font-size: 11px; letter-spacing: 0.09em; text-transform: uppercase; color: var(--ink-3); text-align: left; font-weight: 500; padding: 8px 14px 8px 0; border-bottom: 1px solid var(--ink); white-space: nowrap; }
+  td { padding: 9px 14px 9px 0; border-bottom: 1px solid var(--rule); vertical-align: baseline; }
+  td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+  td.num { font-family: var(--mono); font-size: 13.5px; }
+  tr.top td { background: var(--accent-wash); }
+  tr.top td:first-child { border-radius: 6px 0 0 6px; }
+  tr.top td:last-child { border-radius: 0 6px 6px 0; }
+  .modelname { font-weight: 600; white-space: nowrap; }
+  .provider { font-family: var(--mono); font-size: 11px; color: var(--ink-3); display: block; }
+
+  /* bars */
+  .barchart { margin: 24px 0 8px; display: grid; gap: 10px; }
+  .barrow { display: grid; grid-template-columns: 170px 1fr 58px; align-items: center; gap: 12px; }
+  .barrow .blabel { font-size: 13px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .bartrack { background: var(--paper-2); border-radius: 4px; height: 18px; position: relative; }
+  .barfill { position: absolute; inset: 0 auto 0 0; background: var(--bar); border-radius: 0 4px 4px 0; min-width: 2px; transition: width 0.25s ease; }
+  .barrow.top .barfill { background: var(--bar-top); }
+  .barval { font-family: var(--mono); font-size: 12.5px; text-align: right; font-variant-numeric: tabular-nums; }
+  @media (prefers-reduced-motion: reduce) { .barfill { transition: none; } }
+
+  /* CI plot */
+  .ciplot { margin: 10px 0 4px; }
+  .ciplot svg { display: block; width: 100%; height: auto; }
+  .ci-note { font-size: 12.5px; color: var(--ink-3); font-family: var(--mono); }
+
+  /* passage browser */
+  .filters { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0 18px; }
+  .filters button {
+    font-family: var(--mono); font-size: 12px; padding: 5px 12px; cursor: pointer;
+    border: 1px solid var(--rule); border-radius: 999px; background: var(--paper); color: var(--ink-2);
+  }
+  .filters button[aria-pressed="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+  .passage {
+    border: 1px solid var(--rule); border-radius: 8px; margin-bottom: 12px;
+    background: var(--paper-2); overflow: hidden;
+  }
+  .passage summary {
+    cursor: pointer; padding: 12px 16px; display: flex; flex-wrap: wrap; gap: 6px 12px; align-items: baseline;
+    list-style: none;
+  }
+  .passage summary::-webkit-details-marker { display: none; }
+  .passage summary .pid { font-family: var(--mono); font-size: 11.5px; color: var(--ink-3); }
+  .passage summary .pcompany { font-size: 13.5px; font-weight: 600; }
+  .passage .pbody { padding: 0 16px 14px; border-top: 1px solid var(--rule); }
+  .passage blockquote {
+    font-family: var(--serif); font-size: 14.5px; color: var(--ink-2);
+    margin: 12px 0; padding: 0 0 0 14px; border-left: 3px solid var(--rule);
+    max-height: 240px; overflow-y: auto;
+  }
+  .predrow { display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: center; margin: 6px 0; font-size: 12.5px; }
+  .predrow .who { font-family: var(--mono); font-size: 11px; color: var(--ink-3); width: 150px; flex: none; }
+  .verdict { font-family: var(--mono); font-size: 11px; }
+  .verdict.ok { color: var(--good); }
+  .verdict.miss { color: var(--bad); }
+  .gnote { font-size: 12.5px; color: var(--ink-3); font-style: italic; }
+
+  footer { margin-top: 72px; padding-top: 18px; border-top: 3px double var(--rule); font-size: 12.5px; color: var(--ink-3); }
+  footer p { margin: 0 0 6px; }
+  .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+</style>
+
+<div class="wrap">
+<header class="masthead">
+  <p class="eyebrow">AI Risk Observatory · Judge validation demo · n = 50 passages</p>
+  <h1>Who Grades the Graders?</h1>
+  <p class="standfirst">A pipeline labels annual-report passages as <em>AI adoption, risk, vendor, or harm</em>. An LLM judge assigns more labels than the human annotators did — and spot checks say many of the extra labels are valid. Is the LLM judge better? This page makes the question precise, then answers it for a bench of current models on real Observatory data.</p>
+</header>
+
+<section id="question">
+  <p class="item-label">Item 1 · The question</p>
+  <h2>"Better" is undefined until you fix three things</h2>
+  <p>A judge that emits more labels will usually trade precision for recall: fewer missed labels (false negatives), more spurious ones (false positives). Whether that trade is an improvement is not a fact about the judge — it depends on three commitments the evaluator has to make explicitly:</p>
+  <p><strong>1. A ground truth</strong> that is independent of both judges — otherwise "the human missed valid labels" and "the LLM hallucinates labels" are indistinguishable claims.<br>
+  <strong>2. An error-cost weighting</strong> — how much a false positive hurts relative to a false negative. F<sub>β</sub> makes that weighting a single explicit parameter instead of a hidden assumption.<br>
+  <strong>3. A test of the difference</strong> — with a finite evaluation set, an observed gap can be an artifact of which passages happened to be sampled. A paired bootstrap answers whether the gap survives resampling.</p>
+  <p>Everything below is that recipe, executed end-to-end on the <a href="https://github.com/84rt/AI-Risk-Observatory">AIRO v1.0 dataset</a> (AI Security Institute, CC&nbsp;BY&nbsp;4.0): 24,189 AI-keyword passages from 11,112 UK annual reports, 2020–2025.</p>
+</section>
+
+<section id="groundtruth">
+  <p class="item-label">Item 2 · Ground truth</p>
+  <h2>A written rubric, applied blind</h2>
+  <p>Fifty passages were sampled from the AIRO golden set, stratified across the pipeline's own phase-1 strata so all four labels and the no-label case appear (all three <span class="chip"><span class="dot" style="background:var(--c-harm)"></span>harm</span> passages in the corpus are included — at 3 in 24,189, harm is the class that breaks naive averaging). Each passage was then hand-labeled against the four definitions below by <strong>Claude (Fable 5)</strong>, working from a written rubric fixed <em>before</em> any judge was run, seeing only the passage text — no company metadata, no judge outputs.</p>
+  <div class="labels-grid">
+    <div class="label-card">
+      <h4><span class="dot" style="background:var(--c-adoption)"></span>adoption</h4>
+      <p>The reporting company itself uses, deploys, develops, pilots, or integrates AI in its operations, products, or services.</p>
+      <p><strong>Not:</strong> industry commentary, uncommitted aspiration ("we may explore AI"), or a portfolio company's / customer's use.</p>
+    </div>
+    <div class="label-card">
+      <h4><span class="dot" style="background:var(--c-risk)"></span>risk</h4>
+      <p>AI identified as a source of <em>potential</em> adverse outcome for the company — operational, model error, security, regulatory, reputational, competitive. Boilerplate risk-factor language counts.</p>
+      <p><strong>Not:</strong> AI used as a risk-mitigation tool (that's adoption).</p>
+    </div>
+    <div class="label-card">
+      <h4><span class="dot" style="background:var(--c-vendor)"></span>vendor</h4>
+      <p>The company obtains AI capability from, or depends on, an external party — third-party models, cloud AI services, AI platforms, AI-critical compute framed as a dependency.</p>
+      <p><strong>Not:</strong> generic IT outsourcing, or the company <em>selling</em> AI to others.</p>
+    </div>
+    <div class="label-card">
+      <h4><span class="dot" style="background:var(--c-harm)"></span>harm</h4>
+      <p>A negative AI-related event that <em>has happened</em> or is concretely in progress — an incident, filed litigation, discovered failure, realized loss.</p>
+      <p><strong>Not:</strong> potential-only language; that stays risk. Tense is the boundary.</p>
+    </div>
+  </div>
+  <p class="small">The mere appearance of the word "AI" never suffices for any label; negations get none; the empty set is a valid answer (15 of 50 passages carry no label). The full rubric, with tie-breakers and boundary rules, ships with the code. Every gold decision is inspectable in Item&nbsp;6, including the deliberately strict calls — e.g. a platform described only as "algorithmic" is not AI-framed <em>in the passage</em>, so it earns nothing.</p>
+  <div class="notice"><strong>Declared conflict:</strong> the ground truth was written by an Anthropic model and the bench ranks Anthropic models among others. In a real validation this is disqualifying — the rubric-writer and the adjudicator must be independent of every judge under test. Here it is a demo constraint, stated rather than hidden; read the Anthropic rows with that discount.</div>
+</section>
+
+<section id="metric">
+  <p class="item-label">Item 3 · The metric</p>
+  <h2>F<sub>β</sub> puts the FP/FN exchange rate on a dial</h2>
+  <p>For each label class, precision P = TP/(TP+FP) and recall R = TP/(TP+FN) are computed over all 50 passages, then combined:</p>
+  <div class="formula">F<sub>β</sub> = (1 + β²) · P · R / (β² · P + R)</div>
+  <p>β is the exchange rate: <strong>β&nbsp;&lt;&nbsp;1</strong> penalizes false positives more (a strict auditor's judge), <strong>β&nbsp;&gt;&nbsp;1</strong> penalizes misses more (a screening judge feeding human review). <strong>Micro</strong>-averaging pools every (passage,&nbsp;label) decision, so common classes dominate; <strong>macro</strong>-averaging gives each of the four classes equal weight, so the rare harm class counts as much as adoption. For the Observatory — whose output is <em>prevalence statistics for governments</em>, where under-counting rare substantive disclosure is the costlier error — a screening posture (β ≥ 1) with macro visibility on rare classes is the defensible default. The dial below lets you disagree.</p>
+</section>
+
+<section id="inference">
+  <p class="item-label">Item 4 · Inference</p>
+  <h2>A paired bootstrap decides if the gap is real</h2>
+  <p>The evaluation set is 50 passages; a different sample would give different scores. To test whether judge A actually outperforms judge B, passages are resampled with replacement B&nbsp;=&nbsp;2,000 times — keeping each passage's gold labels and <em>both</em> judges' predictions together, so the comparison stays paired — and Δ&nbsp;=&nbsp;F<sub>β</sub>(A)&nbsp;−&nbsp;F<sub>β</sub>(B) is recomputed on each resample. The 95% interval of those Δs, and the one-sided p-value <span class="mono">p&nbsp;=&nbsp;#{Δ&nbsp;≤&nbsp;0}/B</span>, are reported below. Intervals that cross zero mean the ranking at that β is not settled by these 50 passages.</p>
+  <p class="small">Honest footnote: passages cluster within filings (two of the harm passages come from the same Gear4Music report), so the exchangeable-passage bootstrap here is slightly anti-conservative; at production scale you resample at the document level.</p>
+</section>
+
+<section id="results">
+  <p class="item-label">Item 5 · Results</p>
+  <h2 id="results-h2">The bench</h2>
+  <div id="results-body"></div>
+</section>
+
+<section id="browser">
+  <p class="item-label">Item 6 · The evidence</p>
+  <h2>Every passage, every call</h2>
+  <p class="small">Gold labels with the rubric note that justifies them, against each judge's prediction. Filter to the disagreements — they are where the methodology earns its keep.</p>
+  <div class="filters" id="filters" role="group" aria-label="Passage filters"></div>
+  <div id="passages"></div>
+</section>
+
+<section id="limits">
+  <p class="item-label">Item 7 · Limitations</p>
+  <h2>What this demo does not license</h2>
+  <p><strong>One annotator, no agreement ceiling.</strong> Ground truth here is a single (machine) annotator applying a rubric. A real validation needs ≥2 independent expert annotators and a reported inter-annotator agreement — the ceiling any judge comparison must be read against.</p>
+  <p><strong>Judge–adjudicator dependence.</strong> As declared in Item 2: an Anthropic-authored gold standard plausibly flatters Anthropic judges (shared training priors about label semantics), and the same critique applies to any lab's model grading its own family.</p>
+  <p><strong>Selection via the pipeline's own strata.</strong> Sampling was stratified on AIRO's phase-1 labels to guarantee class coverage, so class balance is designed, not natural — per-class scores are meaningful, pooled prevalence is not.</p>
+  <p><strong>Single operating points.</strong> Each judge ran one prompt at default settings. An LLM judge's precision/recall point is cheap to move (prompt strictness, self-consistency); ranking judges at arbitrary operating points conflates tuning with ability.</p>
+  <p><strong>n = 50.</strong> Deliberately small enough to hand-adjudicate every disagreement — the bootstrap intervals below are wide, and that is the honest message of the page: at this n, most "who's better" claims don't clear zero.</p>
+</section>
+
+<footer>
+  <p>Data: AI Risk Observatory Dataset v1.0, AI Security Institute, April 2026 (CC BY 4.0). Passages quoted from UK public-company annual reports for research.</p>
+  <p>Built as a methodology demo for the SPAR "Global AI Risk Observatory" application. Ground-truth rubric and labels: Claude Fable 5. Metrics recompute live in this page; bootstrap uses a fixed seed for reproducibility.</p>
+</footer>
+</div>
+
+<script>
+const DATA = __DATA_JSON__;
+const LABELS = ["adoption", "risk", "vendor", "harm"];
+const LCOLOR = { adoption: "var(--c-adoption)", risk: "var(--c-risk)", vendor: "var(--c-vendor)", harm: "var(--c-harm)" };
+const B = 2000;
+
+// ---------- metrics ----------
+function prf(golds, preds, beta) {
+  const b2 = beta * beta;
+  let TP = 0, FP = 0, FN = 0;
+  const per = {};
+  for (const lab of LABELS) {
+    let tp = 0, fp = 0, fn = 0;
+    for (let i = 0; i < golds.length; i++) {
+      const g = golds[i].includes(lab), p = preds[i].includes(lab);
+      if (g && p) tp++; else if (!g && p) fp++; else if (g && !p) fn++;
+    }
+    TP += tp; FP += fp; FN += fn;
+    const prec = tp + fp ? tp / (tp + fp) : 1, rec = tp + fn ? tp / (tp + fn) : 1;
+    const f = prec + rec ? (1 + b2) * prec * rec / (b2 * prec + rec) : 0;
+    per[lab] = { p: prec, r: rec, f, tp, fp, fn, support: tp + fn };
+  }
+  const mp = TP + FP ? TP / (TP + FP) : 1, mr = TP + FN ? TP / (TP + FN) : 1;
+  const micro = mp + mr ? (1 + b2) * mp * mr / (b2 * mp + mr) : 0;
+  // macro averages only over classes with gold positives here -- mirrors prf()
+  // in judge_eval.py. Scoring an absent class the vacuous 1.0 hands out free
+  // points; `harm` has 2 gold passages in 50, so 13% of bootstrap resamples
+  // contain none and would otherwise pin 25% of macro to a constant.
+  const sup = LABELS.filter(l => per[l].support);
+  const macro = sup.length ? sup.reduce((s, l) => s + per[l].f, 0) / sup.length : micro;
+  return { per, micro, macro, mp, mr };
+}
+function mulberry32(a) {
+  return function () {
+    a |= 0; a = (a + 0x6D2B79F5) | 0;
+    let t = Math.imul(a ^ (a >>> 15), 1 | a);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+// Resamples whole CLUSTERS (companies), not passages -- mirrors paired_bootstrap
+// in judge_eval.py. Passages from one filer are not independent draws: risk
+// boilerplate is copied forward and judge errors repeat across a document, so
+// resampling passages understates the spread of a fresh sample. The unit also
+// fixes the estimand: drawing companies asks "how would this judge do on filers
+// I have not seen?", which is the question a prevalence observatory is asking.
+function pairedBootstrap(golds, pa, pb, beta, agg, groups) {
+  const rng = mulberry32(42), deltas = new Array(B);
+  const G = groups && groups.length ? groups : golds.map((_, i) => [i]);
+  for (let b = 0; b < B; b++) {
+    const g = [], a = [], c = [];
+    for (let k = 0; k < G.length; k++) {
+      for (const j of G[Math.floor(rng() * G.length)]) {
+        g.push(golds[j]); a.push(pa[j]); c.push(pb[j]);
+      }
+    }
+    deltas[b] = prf(g, a, beta)[agg] - prf(g, c, beta)[agg];
+  }
+  deltas.sort((x, y) => x - y);
+  return { lo: deltas[Math.floor(0.025 * B)], hi: deltas[Math.floor(0.975 * B)],
+           p: deltas.filter(d => d <= 0).length / B };
+}
+
+// ---------- state ----------
+let beta = 1.0, agg = "macro", filter = "all";
+const passages = DATA.passages;
+const golds = passages.map(p => p.gold);
+// bootstrap resampling unit: passage indices grouped by filer
+const CLUSTERS = (() => {
+  const by = new Map();
+  passages.forEach((p, i) => {
+    const k = p.company;
+    if (!by.has(k)) by.set(k, []);
+    by.get(k).push(i);
+  });
+  return [...by.values()];
+})();
+const models = Object.keys(DATA.models || {});
+const shortName = m => m.split(":")[1] || m;
+const provider = m => m.split(":")[0];
+
+function chipHTML(lab) {
+  return `<span class="chip"><span class="dot" style="background:${LCOLOR[lab]}"></span>${lab}</span>`;
+}
+function chipsHTML(labs) {
+  return labs.length ? labs.map(chipHTML).join(" ") : `<span class="chip none">no label</span>`;
+}
+function fmt(x, d = 3) { return x.toFixed(d); }
+
+// ---------- results ----------
+function renderResults() {
+  const el = document.getElementById("results-body");
+  if (!models.length) {
+    el.innerHTML = `<div class="notice"><strong>Model runs pending.</strong> The ground truth, metric, and inference machinery on this page are live; the judge bench itself runs next (Anthropic + OpenAI models over the same 50 passages) and this section will fill in with the ranking, per-class scores, and bootstrap intervals.</div>`;
+    return;
+  }
+  el.innerHTML = `
+  <div class="controls">
+    <div class="control">
+      <label for="beta">β — cost of a miss vs a false alarm</label>
+      <input type="range" id="beta" min="-2" max="2" step="0.05" value="${Math.log2(beta)}">
+      <div class="beta-readout">β = <span id="betaval">${fmt(beta, 2)}</span> — <span id="betamode">balanced (F1)</span></div>
+    </div>
+    <div class="control">
+      <label id="agglabel">Averaging</label>
+      <div class="seg" role="group" aria-labelledby="agglabel">
+        <button id="agg-macro" aria-pressed="${agg === "macro"}">macro</button>
+        <button id="agg-micro" aria-pressed="${agg === "micro"}">micro</button>
+      </div>
+    </div>
+  </div>
+  <div id="bench" aria-live="polite"></div>`;
+
+  let timer = null;
+  document.getElementById("beta").addEventListener("input", e => {
+    beta = Math.pow(2, parseFloat(e.target.value));
+    document.getElementById("betaval").textContent = fmt(beta, 2);
+    document.getElementById("betamode").textContent =
+      beta < 0.9 ? "precision-leaning (strict auditor)" : beta > 1.1 ? "recall-leaning (screening judge)" : "balanced (F1)";
+    clearTimeout(timer); timer = setTimeout(renderBench, 120);
+  });
+  const setAgg = a => {
+    agg = a;
+    document.getElementById("agg-macro").setAttribute("aria-pressed", a === "macro");
+    document.getElementById("agg-micro").setAttribute("aria-pressed", a === "micro");
+    renderBench();
+  };
+  document.getElementById("agg-macro").addEventListener("click", () => setAgg("macro"));
+  document.getElementById("agg-micro").addEventListener("click", () => setAgg("micro"));
+  renderBench();
+}
+
+function renderBench() {
+  const el = document.getElementById("bench");
+  const stats = {}, ranked = [...models];
+  for (const m of models) stats[m] = prf(golds, DATA.models[m].preds, beta);
+  ranked.sort((a, b) => stats[b][agg] - stats[a][agg]);
+  const top = ranked[0];
+
+  let html = `<div class="barchart" role="img" aria-label="F-beta by model">`;
+
+  const maxF = Math.max(...ranked.map(m => stats[m][agg]), 0.001);
+  for (const m of ranked) {
+    const f = stats[m][agg];
+    html += `<div class="barrow${m === top ? " top" : ""}">
+      <span class="blabel">${shortName(m)}</span>
+      <span class="bartrack"><span class="barfill" style="width:${(f / maxF * 100).toFixed(1)}%"></span></span>
+      <span class="barval">${fmt(f)}</span></div>`;
+  }
+  html += `</div>
+  <div class="tablewrap"><table>
+    <thead><tr><th>#</th><th>Judge</th><th class="num">micro P</th><th class="num">micro R</th>
+    <th class="num">micro F<sub>β</sub></th><th class="num">macro F<sub>β</sub></th>
+    ${LABELS.map(l => `<th class="num">F ${l}</th>`).join("")}
+    <th class="num">Δ vs #1 [95% CI]</th><th class="num">p(Δ≤0)</th></tr></thead><tbody>`;
+
+  ranked.forEach((m, i) => {
+    const s = stats[m];
+    let ci = "—", pv = "—";
+    if (m !== top) {
+      const bs = pairedBootstrap(golds, DATA.models[top].preds, DATA.models[m].preds, beta, agg, CLUSTERS);
+      const d = s[agg] - stats[top][agg];
+      ci = `${fmt(d)} [${fmt(-bs.hi)}, ${fmt(-bs.lo)}]`;
+      pv = bs.p < 0.0005 ? "&lt;0.001" : fmt(bs.p, 3);
+    }
+    html += `<tr${m === top ? ' class="top"' : ""}>
+      <td class="num">${i + 1}</td>
+      <td><span class="modelname">${shortName(m)}</span><span class="provider">${provider(m)}</span></td>
+      <td class="num">${fmt(s.mp)}</td><td class="num">${fmt(s.mr)}</td>
+      <td class="num">${fmt(s.micro)}</td><td class="num">${fmt(s.macro)}</td>
+      ${LABELS.map(l => `<td class="num">${fmt(s.per[l].f)}</td>`).join("")}
+      <td class="num">${ci}</td><td class="num">${pv}</td></tr>`;
+  });
+  html += `</tbody></table></div>
+  <p class="ci-note">Δ is this judge minus the current #1 at the chosen β and averaging; negative means behind. CI from B=${B} paired resamples, seed 42. p is one-sided: the fraction of resamples in which this judge ties or beats #1.</p>
+  <p class="small" id="beta-story"></p>`;
+
+  el.innerHTML = html;
+
+  // does the ranking change across beta? tell the story explicitly.
+  const rankAt = b => [...models].sort((x, y) => prf(golds, DATA.models[y].preds, b)[agg] - prf(golds, DATA.models[x].preds, b)[agg])[0];
+  const strictTop = rankAt(0.25), lenientTop = rankAt(4);
+  document.getElementById("beta-story").innerHTML =
+    strictTop === lenientTop
+      ? `Across the whole dial (β from 0.25 to 4), <strong>${shortName(strictTop)}</strong> stays on top under ${agg} averaging — on this sample the ranking is not an artifact of the FP/FN exchange rate.`
+      : `Drag the dial: at β = 0.25 (precision-first) the ${agg} winner is <strong>${shortName(strictTop)}</strong>; at β = 4 (recall-first) it is <strong>${shortName(lenientTop)}</strong>. "Which judge is better" literally has a different answer depending on the error-cost weighting — the central claim of this page, visible in one slider.`;
+}
+// ---------- passage browser ----------
+function renderFilters() {
+  const el = document.getElementById("filters");
+  const defs = [["all", "all 50"], ["disagree", "judge ≠ gold"], ["nolabel", "no label"],
+                ...LABELS.map(l => [l, l])];
+  el.innerHTML = defs.map(([k, txt]) =>
+    `<button data-f="${k}" aria-pressed="${filter === k}">${txt}</button>`).join("");
+  el.querySelectorAll("button").forEach(b =>
+    b.addEventListener("click", () => { filter = b.dataset.f; renderFilters(); renderPassages(); }));
+}
+function renderPassages() {
+  const el = document.getElementById("passages");
+  const rows = passages.filter(p => {
+    if (filter === "all") return true;
+    if (filter === "nolabel") return p.gold.length === 0;
+    if (filter === "disagree")
+      return models.some(m => {
+        const pr = DATA.models[m].preds[passages.indexOf(p)];
+        return JSON.stringify([...pr].sort()) !== JSON.stringify([...p.gold].sort());
+      });
+    return p.gold.includes(filter);
+  });
+  el.innerHTML = rows.map(p => {
+    const i = passages.indexOf(p);
+    const modelRows = models.map(m => {
+      const pr = DATA.models[m].preds[i];
+      const ok = JSON.stringify([...pr].sort()) === JSON.stringify([...p.gold].sort());
+      return `<div class="predrow"><span class="who">${shortName(m)}</span>${chipsHTML(pr)}
+        <span class="verdict ${ok ? "ok" : "miss"}">${ok ? "= gold" : "≠ gold"}</span></div>`;
+    }).join("");
+    return `<details class="passage">
+      <summary><span class="pid">${p.id}</span><span class="pcompany">${p.company} · ${p.year}</span>
+        <span>${chipsHTML(p.gold)}</span></summary>
+      <div class="pbody">
+        <blockquote>${p.text.replace(/&/g, "&amp;").replace(/</g, "&lt;")}</blockquote>
+        <div class="predrow"><span class="who">gold (rubric)</span>${chipsHTML(p.gold)}</div>
+        <p class="gnote">${p.gold_note || ""}</p>
+        ${modelRows}
+      </div></details>`;
+  }).join("") || `<p class="small">No passages match this filter.</p>`;
+}
+
+renderResults();
+renderFilters();
+renderPassages();
+</script>

@@ -1,0 +1,4 @@
+.env
+data/airo-dataset-export/
+__pycache__/
+.DS_Store
